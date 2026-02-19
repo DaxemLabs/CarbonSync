@@ -2138,6 +2138,11 @@ function launchApp() {
   buildChart();
   calculateRevenue();
 
+  // Populate CBAM countdown immediately on launch
+  const daysLeft = Math.ceil((new Date('2027-01-01') - new Date()) / 86400000);
+  const cdEl = document.getElementById('cbam-countdown');
+  if (cdEl) cdEl.textContent = daysLeft.toLocaleString();
+
   document.getElementById('login-screen').style.display = 'none';
   document.getElementById('app').style.display = 'block';
 
