@@ -7,15 +7,15 @@
 
 ## Live Demo
 
-**[Launch CarbonSync™ Sandbox →](https://jojibhatia.github.io/CarbonSync-Sandbox/carbonsync-demo.html)**
+**[Launch CarbonSync™ Sandbox →](https://daxemlabs.github.io/CarbonSync/carbonsync-demo.html)**
 
 ### Pre-Configured Client Links
 
 | Client | Direct Link |
 |--------|------------|
-| Pickfords (700 vehicles) | [Open Pickfords Dashboard](https://jojibhatia.github.io/CarbonSync-Sandbox/carbonsync-demo.html?company=Pickfords&fleet=700&sector=removals&autolaunch=true) |
-| O'Donovan Waste (85 vehicles) | [Open O'Donovan Dashboard](https://jojibhatia.github.io/CarbonSync-Sandbox/carbonsync-demo.html?company=O%27Donovan+Waste&fleet=85&sector=waste&autolaunch=true) |
-| Generic (any fleet) | [Open with Login Screen](https://jojibhatia.github.io/CarbonSync-Sandbox/carbonsync-demo.html) |
+| Pickfords (700 vehicles) | [Open Pickfords Dashboard](daxemlabs.github.io/CarbonSync) |
+| O'Donovan Waste (85 vehicles) | [Open O'Donovan Dashboard](daxemlabs.github.io/CarbonSync) |
+| Generic (any fleet) | [Open with Login Screen](daxemlabs.github.io/CarbonSync) |
 
 ---
 
