@@ -7,15 +7,15 @@
 
 ## Live Demo
 
-**[Launch CarbonSync™ Sandbox →](https://daxemlabs.github.io/CarbonSync/carbonsync-demo.html)**
+**[Launch CarbonSync™ Dashboard →](https://daxemlabs.github.io/CarbonSync/carbonsync-demo.html)**
 
 ### Pre-Configured Client Links
 
 | Client | Direct Link |
 |--------|------------|
-| Pickfords (700 vehicles) | [Open Pickfords Dashboard](daxemlabs.github.io/CarbonSync) |
-| O'Donovan Waste (85 vehicles) | [Open O'Donovan Dashboard](daxemlabs.github.io/CarbonSync) |
-| Generic (any fleet) | [Open with Login Screen](daxemlabs.github.io/CarbonSync) |
+| Pickfords (700 vehicles) | [Open Pickfords Dashboard](https://daxemlabs.github.io/CarbonSync/carbonsync-demo.html?company=Pickfords&fleet=700&sector=removals&autolaunch=true) |
+| O'Donovan Waste (85 vehicles) | [Open O'Donovan Dashboard](https://daxemlabs.github.io/CarbonSync/carbonsync-demo.html?company=O%27Donovan+Waste&fleet=85&sector=waste&autolaunch=true) |
+| Generic (any fleet) | [Open with Login Screen](https://daxemlabs.github.io/CarbonSync/carbonsync-demo.html) |
 
 ---
 
@@ -51,38 +51,30 @@ Sentinel Rig  →  MQTT / 4G  →  Dataloom™ AI  →  CarbonSync™ Ledger  �
 
 ---
 
+## Repository Contents
+
+| File | Purpose |
+|------|---------|
+| `carbonsync-demo.html` | Full interactive platform — single file, no dependencies |
+| `METHODOLOGY.md` | Scientific and regulatory methodology — DEFRA 2024, Verra VCS, ACX pricing |
+| `HARDWARE_ROADMAP.md` | Sentinel Rig phase-gate development roadmap — POC through to Mass Production |
+| `COMPETITIVE_LANDSCAPE.md` | Competitor matrix and market positioning analysis |
+| `PILOT_PROGRAM.md` | Beta fleet pilot programme — objectives, partner criteria, timeline |
+| `CarbonSync_Rig_Brief.docx` | Technical specification for embedded and backend engineers |
+| `NOTICE` | IP and trademark notice |
+
+---
+
 ## Connecting a Real Sentinel Rig
 
 The platform is production-ready for live rig integration. Full technical specification in `CarbonSync_Rig_Brief.docx`.
 
-**WebSocket endpoint (backend engineer):**
+**WebSocket endpoint:**
 ```
 wss://api.daxem.ai/rigs/live
 ```
 
-**Expected packet format (embedded engineer):**
-```json
-{
-  "rigId":          "SENT-001",
-  "vehicleId":      "PK001",
-  "timestamp":      1700000000000,
-  "fuelPulse_L":    1.234,
-  "obdRpm":         1450,
-  "obdSpeed_kmh":   62,
-  "obdEngineLoad":  0.67,
-  "gpsLat":         51.5074,
-  "gpsLng":         -0.1278,
-  "gpsAccuracy_m":  4.2,
-  "signalStrength": -73,
-  "sdCardHash":     "sha256:...",
-  "hash":           "sha256:...",
-  "firmwareVersion":"1.0.3"
-}
-```
-
-**Developer Mode:** Press `Ctrl+D` inside the dashboard to open the dev panel — WebSocket status, live connection log, packet schema, and computation constants. Switch between simulation and live mode without touching code.
-
-> Simulation mode is on by default. No console errors in demo mode.
+**Developer Mode:** Press `Ctrl+D` inside the dashboard — WebSocket status, live connection log, packet schema, and computation constants. Simulation mode is on by default.
 
 ---
 
@@ -121,16 +113,6 @@ The **⚠ CBAM Exposure** tab calculates each fleet's liability under the UK Car
 | Blockchain | Polygon Mainnet — ERC-1155 tokens, gas-efficient minting |
 | Verification | Verra VCS methodology, DEFRA 2024 emission factors |
 | Frontend | Vanilla JS, no dependencies, WebSocket live data layer |
-
----
-
-## Repository Structure
-
-```
-CarbonSync-Sandbox/
-├── carbonsync-demo.html     ← Full interactive platform (single file)
-├── README.md                 ← This file
-```
 
 ---
 
