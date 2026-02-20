@@ -229,12 +229,12 @@ The `dataPackageIpfs` field links every token to its underlying verified data pa
 
 Smart contracts distribute revenue automatically on token sale:
 
-| Recipient | Share | Amount (at £72/tCO₂e) |
+| Recipient | Share | Notes |
 | :--- | :--- | :--- |
-| Fleet operator | 70% | £50.40/tonne |
-| Daxem Labs (platform fee) | 15% | £10.80/tonne |
-| Driver incentives | 10% | £7.20/tonne |
-| Reserve fund | 5% | £3.60/tonne |
+| Fleet operator | 70% | Primary beneficiary |
+| Daxem Labs (platform fee) | 15% | Platform fee |
+| Driver incentives | 10% | Operator discretion |
+| Reserve fund | 5% | Verra risk buffer |
 
 ### 4.3 Carbon Market Integration
 
