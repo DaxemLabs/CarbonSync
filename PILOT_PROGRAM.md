@@ -56,9 +56,9 @@ We are selective about our pilot partners. The right partner is one where the da
 
 | Month | Phase | What Happens |
 |---|---|---|
-| Month 1 | Installation | Sentinel Rigs fitted across agreed fleet vehicles. Platform configured. Data begins flowing. |
+| Month 1 | Installation | Sentinel Rigs fitted across agreed fleet vehicles. ATECC608A cryptographic signing active from first packet. Platform configured. Data begins flowing. |
 | Months 1–3 | Baseline capture | Platform establishes vehicle-specific emissions baselines. AI models calibrate to individual assets. |
-| Month 3 | Baseline report | First formal data integrity report delivered to partner — verified baseline emissions profile. |
+| Month 3 | Baseline report | First formal data integrity report delivered to partner — verified baseline emissions profile with cryptographic hash audit trail. |
 | Months 4–6 | Optimisation | Dataloom™ AI identifies efficiency opportunities. Driver feedback system activated. Credits begin generating. |
 | Month 6 | Pilot completion | Full performance dossier delivered — fuel savings, CO₂ reduced, credits generated, CBAM liability projection. |
 | Post-pilot | Commercial rollout | Partner transitions to full commercial deployment on agreed terms. |
@@ -79,9 +79,18 @@ Operators who wait until 2027 to instrument their fleets will spend the first CB
 
 The pilot programme has limited capacity for the initial beta cohort. If you operate a UK HGV fleet and want to discuss participation, get in touch directly.
 
-**Contact:** [daxem.ai](https://daxem.ai)
+**Contact:** [partnerships@daxem.ai](mailto:partnerships@daxem.ai) · [daxem.ai](https://daxem.ai)
 
-**Live platform demo:** [CarbonSync™ Sandbox](https://jojibhatia.github.io/CarbonSync-Sandbox/carbonsync-demo.html) — enter your fleet size to see projected credit revenue and CBAM liability figures for your specific operation.
+**Live platform demo:** [CarbonSync™ Sandbox](https://daxemlabs.github.io/CarbonSync/carbonsync-demo.html) — enter your fleet size to see projected credit revenue and CBAM liability figures for your specific operation.
+
+---
+
+## Related Documents
+
+- [`README.md`](README.md) — Platform overview
+- [`METHODOLOGY.md`](METHODOLOGY.md) — How emissions are measured and verified
+- [`HARDWARE_ROADMAP.md`](HARDWARE_ROADMAP.md) — Sentinel Rig engineering specification
+- [`SUPPORT.md`](SUPPORT.md) — Contact directory
 
 ---
 
