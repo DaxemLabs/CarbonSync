@@ -15,7 +15,7 @@ Toucan, KlimaDAO, Flowcarbon, and JPMorgan Kinexys all solve this problem.
 **Problem 2 — Data Integrity Layer:** How do you prove the emissions reduction actually happened, and that the data hasn't been manipulated between the physical event and the credit?
 Nobody solves this for mobile industrial assets. CarbonSync does.
 
-Tokenizing a carbon credit that was verified through manual fuel receipts and quarterly audits does not solve the trust problem — it just puts an untrustworthy number on a blockchain. CarbonSync creates the trust at the point of measurement, making every token downstream cryptographically traceable to a physical sensor reading.
+Tokenizing a carbon credit that was verified through manual fuel receipts and quarterly audits does not solve the trust problem — it just puts an untrustworthy number on a blockchain. CarbonSync creates the trust at the point of measurement, making every token downstream cryptographically traceable to a physical sensor reading signed by a hardware-protected key.
 
 ---
 
@@ -23,7 +23,7 @@ Tokenizing a carbon credit that was verified through manual fuel receipts and qu
 
 | Company | Approach | Blockchain | Hardware? | MRV Method | Market | Key Differentiator |
 |---|---|---|---|---|---|---|
-| **CarbonSync (Daxem Labs)** | Hardware-anchored trust — full lifecycle from measurement to tokenization | Polygon (ERC-1155) | ✅ Sentinel Rig — cryptographic co-processor, unidirectional interface | Direct fuel flow measurement + LSTM AI + Verra VCS | UK HGV fleets — logistics, waste, construction | Hardware-rooted chain of custody. Tamper-evident at source. |
+| **CarbonSync (Daxem Labs)** | Hardware-anchored trust — full lifecycle from measurement to tokenization | Polygon (ERC-1155) | ✅ Sentinel Rig — ESP32 + ATECC608A secure element, unidirectional interface | Direct fuel flow measurement + LSTM AI + Verra VCS | UK HGV fleets — logistics, waste, construction | Hardware-rooted chain of custody. ATECC608A keys physically unextractable. |
 | Toucan Protocol | Bridges existing registry credits to blockchain | Polygon, Base | ❌ None | Relies on Verra / Gold Standard | Carbon credit traders, DeFi | First-mover; large liquidity pool |
 | KlimaDAO | Carbon-backed algorithmic currency | Polygon | ❌ None | Relies on bridged credits via Toucan | DeFi investors | Deflationary token mechanism; governance model |
 | Flowcarbon | Tokenizes high-integrity credits | XRP Ledger | ❌ None | Verra-registered projects | Institutional ESG investors | Institutional focus; high-profile founding team |
@@ -42,9 +42,10 @@ Tokenizing a carbon credit that was verified through manual fuel receipts and qu
 
 | Advantage | Detail | Source |
 |---|---|---|
-| **Hardware-anchored trust** | Independent cryptographic co-processor with unidirectional interface — a compromised primary system cannot generate false data and a matching hash simultaneously | Patent GB2602946.2, Claim 1 |
+| **Hardware-anchored trust** | Dual-processor architecture: ESP32 + ATECC608A dedicated secure element with unidirectional I2C interface. A compromised ESP32 cannot generate false data and a matching ATECC608A-signed hash simultaneously | Patent GB2602946.2, Claim 1 |
+| **ATECC608A secure element** | Hardware-accelerated SHA-256, protected key storage (physically unextractable), true hardware TRNG (FIPS 140-2), tamper detection pins — capabilities no software-only competitor can replicate | HARDWARE_ROADMAP.md |
 | **Direct measurement** | Hall-effect ultrasonic fuel flow sensor achieves >98% accuracy vs. OBD-II estimation at ±10–15% | Patent specification |
-| **Tamper-evident chain of custody** | Hardware kill-switch + dual-persistent storage (cloud + SD card) + cryptographic hash chain | Patent Claims 1–3 |
+| **Tamper-evident chain of custody** | ATECC608A tamper detection + hardware kill-switch + dual-persistent storage (cloud + SD card) + cryptographic hash chain | Patent Claims 1–3 |
 | **Vehicle-specific AI** | LSTM neural networks trained individually per asset — <5% mean absolute prediction error vs. 12–18% for fleet-average models | Patent — Unexpected Technical Results |
 | **Automated verification** | 80–85% cost reduction vs. manual methodologies — from $3–5/tonne to $0.50–0.75/tonne | Patent specification |
 | **Regulatory alignment** | UK CBAM effective 1 January 2027 creates immediate, mandatory compliance demand for verified emissions data | UK Government legislation |
@@ -62,7 +63,7 @@ Platforms like Pachama, Nori, and Silvi are designed for stationary targets — 
 
 **No asset-specific modelling.** They predict carbon changes for geographic areas or crop types, not individual mobile assets with unique mechanical and operational characteristics.
 
-**Controlled environments only.** Remote sensing operates from climate-controlled platforms. It does not address the harsh environment challenges of edge devices on moving vehicles operating at -40°C to +85°C with 5g RMS vibration.
+**Controlled environments only.** Remote sensing operates from climate-controlled platforms. It does not address the harsh environment challenges of edge devices on moving vehicles operating at −40°C to +85°C with 5g RMS vibration — the exact conditions the ATECC608A is rated for.
 
 ---
 
@@ -92,7 +93,7 @@ HORIZONTAL                     │                    VERTICAL
                         SOFTWARE-ONLY
 ```
 
-CarbonSync sits in the Full-Stack / Vertical quadrant — the only player combining hardware integration with deep sector focus. This is the most defensible position: hardware creates the moat, sector focus creates the expertise, and the CBAM deadline creates the urgency.
+CarbonSync sits in the Full-Stack / Vertical quadrant — the only player combining hardware integration with deep sector focus. This is the most defensible position: the ATECC608A secure element creates the hardware moat, sector focus creates the expertise, and the CBAM deadline creates the urgency.
 
 ---
 
@@ -106,7 +107,16 @@ CarbonSync is not a financial layer solution. It is a **data integrity solution 
 
 **2. CBAM makes verification mandatory, not optional.** From 1 January 2027, UK fleet operators face direct financial liability for unverified emissions. This converts a voluntary market into a compliance market — the most durable and scalable type of demand.
 
-**3. The hardware moat is real.** Software can be copied in weeks. A certified, automotive-grade hardware platform with a patented cryptographic architecture, regulatory approvals, and an installed fleet base cannot. CarbonSync's competitive advantage compounds with every rig deployed.
+**3. The hardware moat is real.** Software can be copied in weeks. A certified, automotive-grade hardware platform with a patented cryptographic architecture (ATECC608A secure element, unidirectional interface, hardware kill-switch), regulatory approvals, and an installed fleet base cannot. CarbonSync's competitive advantage compounds with every rig deployed.
+
+---
+
+## Related Documents
+
+- [`README.md`](README.md) — Platform overview and live demo
+- [`METHODOLOGY.md`](METHODOLOGY.md) — Full cryptographic chain of custody and Verra methodology
+- [`HARDWARE_ROADMAP.md`](HARDWARE_ROADMAP.md) — Sentinel Rig engineering and ATECC608A integration detail
+- [`PILOT_PROGRAM.md`](PILOT_PROGRAM.md) — Beta fleet programme
 
 ---
 
