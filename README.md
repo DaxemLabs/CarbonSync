@@ -37,7 +37,7 @@ It runs on simulated data that mirrors exactly what the live platform produces w
 | **Live Telemetry** | Per-vehicle data feed — fuel flow, CO₂, OBD-II signals, cryptographic signatures |
 | **Carbon Credits** | Credit breakdown by source category, Verra VCS methodology, CBAM alignment |
 | **Blockchain Ledger** | Real-time ERC-1155 minting events on Polygon — transaction hashes, block numbers |
-| **Revenue** | 3-year financial projection, 70/15/10/5 revenue split, hardware payback period |
+| **Revenue** | 3-year financial projection, 70/15/10/5 revenue split |
 | **⚠ CBAM Exposure** | UK Carbon Border Adjustment Mechanism liability calculator — live from January 2027 |
 
 ---
@@ -91,7 +91,7 @@ wss://api.daxem.ai/rigs/live
 | Platform fee | 15% | Daxem Labs |
 | Driver incentives | 10% | Fleet operator distributed |
 | Reserve fund | 5% | Buffer |
-| Hardware CAC | £473/vehicle | Sentinel Rig inc. installation |
+| Hardware CAC | Available on request | Sentinel Rig inc. installation |
 
 ---
 
