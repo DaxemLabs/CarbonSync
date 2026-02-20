@@ -1,5 +1,5 @@
 # CarbonSync™ Measurement & Verification Methodology
-**Daxem Labs · Patent Pending GB2602946.2 · Version 1.0 · February 2026**
+**Daxem Labs · Patent Pending GB2602946.2 · Version 1.1 · February 2026**
 
 > Prepared for submission to Verra (Verified Carbon Standard) and SustainCERT for methodology approval and validation body engagement.
 
@@ -94,13 +94,19 @@ This is the architectural feature that distinguishes CarbonSync™ from all exis
 
 ### 5.1 Hardware-Enforced Cryptographic Integrity
 
-An independent cryptographic co-processor (ATTiny85), connected to the primary microcontroller via a **unidirectional interface**, continuously hashes all sensor data streams in real time. This architecture means:
+The Sentinel Rig uses a dual-processor architecture combining an ESP32 primary MCU with an **ATECC608A dedicated cryptographic secure element** (Microchip CryptoAuthentication IC). These communicate via a **unidirectional I2C interface** — the ATECC608A receives sensor data from the ESP32, computes a SHA-256 HMAC using a hardware-protected signing key, and returns the signed hash. The ATECC608A accepts no command inputs — there is no reverse channel.
 
-- The primary processor cannot modify data after hashing — it has no write access to the co-processor
-- A compromised primary system cannot generate false data and a matching hash simultaneously
-- Any post-hoc data modification is computationally detectable
+This architecture means:
 
-Each 30-second packet is signed with SHA-256 at source, before transmission, before local storage. The hash is embedded in the packet itself.
+- Hash computation occurs in dedicated ATECC608A silicon — the private signing key physically cannot be extracted by any software attack
+- A compromised ESP32 cannot generate false sensor data and a matching cryptographic hash simultaneously — the hash is computed independently on hardware whose key it cannot access
+- Any post-hoc data modification is computationally detectable by any party with access to the public verification key
+- The ATECC608A's true hardware random number generator (TRNG) with FIPS 140-2 compliant entropy eliminates predictable-seed vulnerabilities present in software-only implementations
+- Tamper detection pins on the ATECC608A trigger a hardware kill-switch (physical interrupt to the cellular modem enable pin) on any physical interference — ceasing transmission and logging the event with timestamp
+
+Each 30-second packet is signed with SHA-256 at source, before transmission, before local storage. The signed hash is embedded in the packet itself and stored in both the cloud and the on-vehicle SD card.
+
+*Patent Pending GB2602946.2 — the ATECC608A is the preferred embodiment of the independent cryptographic co-processor described in Claims 1 and 2. Full hardware architecture specification in [`HARDWARE_ROADMAP.md`](HARDWARE_ROADMAP.md).*
 
 ### 5.2 Dual-Persistent Storage
 
@@ -120,7 +126,7 @@ Each monitoring period is assigned a quality score (0–100) computed from:
 - Sensor signal quality (GPS fix accuracy, 4G RSSI)
 - Data completeness (percentage of expected 30-second packets received)
 - Cross-validation pass rate (fuel / OBD-II / GPS consistency checks)
-- Hash verification pass rate (cryptographic integrity)
+- Hash verification pass rate (ATECC608A cryptographic integrity)
 
 Only periods scoring ≥90 are included in VCU calculations. Periods scoring 75–89 are flagged for VVB review. Periods below 75 are excluded.
 
@@ -132,7 +138,7 @@ The Dataloom™ validation layer cross-checks three independent data streams on 
 2. **Engine telemetry** (OBD-II — RPM, speed, engine load)
 3. **GPS** (position, distance, elevation delta)
 
-Anomalies are flagged when these streams are inconsistent with each other. The false positive rate is below 1%, compared to 3–5% for software-only validation systems — a direct result of the hardware co-processor architecture described in Section 5.1.
+Anomalies are flagged when these streams are inconsistent with each other. The false positive rate is below 1%, compared to 3–5% for software-only validation systems — a direct result of the ATECC608A hardware architecture described in Section 5.1.
 
 ---
 
@@ -142,7 +148,7 @@ Additionality is demonstrated on two bases:
 
 **Regulatory Additionality:** No UK regulatory requirement exists compelling HGV operators to install real-time fuel flow monitoring systems or generate carbon credits from fleet emissions reductions. The activity goes beyond legal compliance.
 
-**Financial Additionality:** The cost of Sentinel Rig hardware installation (£250/vehicle) and platform fees represents a genuine financial barrier. Without the carbon credit revenue stream, the monitoring activity would not be financially viable for fleet operators. A barrier analysis is provided for each project as part of the Project Description Document (PDD).
+**Financial Additionality:** The cost of Sentinel Rig hardware installation (£473/vehicle CAC) and platform fees represents a genuine financial barrier. Without the carbon credit revenue stream, the monitoring activity would not be financially viable for fleet operators. A barrier analysis is provided for each project as part of the Project Description Document (PDD).
 
 ---
 
@@ -158,7 +164,7 @@ This methodology generates credits from emissions reductions in fuel consumption
 
 At the close of each monitoring period, the Dataloom™ platform automatically generates a structured verification package containing:
 
-- Complete sensor data with cryptographic hash chain
+- Complete sensor data with ATECC608A cryptographic hash chain
 - Quality scores and anomaly logs
 - Baseline vs. project emissions comparison
 - LSTM attribution breakdown by reduction source
@@ -168,7 +174,7 @@ This package is formatted for direct submission to the VVB via REST API, replaci
 
 ### 8.2 Verification Cost Reduction
 
-The automated pipeline reduces verification cost from the industry standard of **$3–5/tonne** (manual methodology) to an estimated **$0.50–0.75/tonne** — an 80–85% reduction. This is achieved by replacing manual document review with computational hash verification. Auditors verify chain-of-custody integrity in seconds rather than hours. Physical site visit frequency is reduced from every crediting period to annually, owing to the cryptographic confidence provided by the hardware architecture.
+The automated pipeline reduces verification cost from the industry standard of **$3–5/tonne** (manual methodology) to an estimated **$0.50–0.75/tonne** — an 80–85% reduction. This is achieved by replacing manual document review with computational hash verification. Auditors verify ATECC608A chain-of-custody integrity in seconds rather than hours. Physical site visit frequency is reduced from every crediting period to annually, owing to the cryptographic confidence provided by the hardware architecture.
 
 ### 8.3 Time-to-Credit
 
@@ -192,7 +198,9 @@ The blockchain record provides a publicly auditable, tamper-proof registry of al
 The inaugural CarbonSync™ project is being conducted in partnership with a **strategic validation partner (to be announced)**, deploying Sentinel Rigs across their HGV fleet in Q2 2026. Pilot data will form the empirical basis for this methodology's submission to Verra and for SustainCERT validation engagement.
 
 The live platform demonstrating real-time operation of this methodology is available at:
-**https://jojibhatia.github.io/CarbonSync-Sandbox/carbonsync-demo.html**
+**[https://daxemlabs.github.io/CarbonSync/carbonsync-demo.html](https://daxemlabs.github.io/CarbonSync/carbonsync-demo.html)**
+
+See [`PILOT_PROGRAM.md`](PILOT_PROGRAM.md) for pilot partner eligibility and programme details.
 
 ---
 
@@ -205,6 +213,22 @@ The live platform demonstrating real-time operation of this methodology is avail
 | ISO 14064-2 | Project-level GHG quantification and reporting |
 | UK CBAM (effective 1 Jan 2027) | Verified actual emissions data satisfies HMRC requirements |
 | TCFD | Scope 1 and Scope 3 transport emissions reporting |
+| FIPS 140-2 | ATECC608A TRNG entropy source compliance |
+
+---
+
+## Appendix A — Cryptographic Architecture Summary
+
+| Component | Role | Key Property |
+|---|---|---|
+| ESP32-WROOM-32 | Primary MCU — sensor management, data aggregation, transmission | General-purpose processing |
+| ATECC608A | Dedicated secure element — SHA-256 HMAC, key storage, TRNG, tamper detection | Hardware-enforced — keys physically unextractable |
+| Unidirectional I2C interface | Data channel ESP32 → ATECC608A | No reverse command channel |
+| SHA-256 HMAC | Per-packet signing at 30-second intervals | Tamper-evident at source |
+| Hardware kill-switch | Physical interrupt to cellular modem on hash mismatch | Ceases transmission on detected tampering |
+| Dual-persistent storage | Cloud (TLS 1.3) + on-vehicle SD (IP67) | No single point of failure for audit trail |
+
+*Full hardware specifications and phase-gate development milestones in [`HARDWARE_ROADMAP.md`](HARDWARE_ROADMAP.md).*
 
 ---
 
@@ -213,7 +237,8 @@ The live platform demonstrating real-time operation of this methodology is avail
 **Daxem Labs**
 Patent: GB2602946.2 (filed February 2026)
 Platform: [daxem.ai](https://daxem.ai)
-GitHub: [github.com/jojibhatia/CarbonSync-Sandbox](https://github.com/jojibhatia/CarbonSync-Sandbox)
+GitHub: [github.com/DaxemLabs/CarbonSync](https://github.com/DaxemLabs/CarbonSync)
+Methodology enquiries: [methodology@daxem.ai](mailto:methodology@daxem.ai)
 
 *For methodology enquiries, VVB engagement, or pilot partnership discussions, please contact Daxem Labs directly.*
 
