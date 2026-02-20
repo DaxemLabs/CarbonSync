@@ -1,5 +1,5 @@
 # CarbonSync™ — Live Intelligence Platform
-**by Daxem Labs · Patent Filed GB2602946.2**
+**by Daxem Labs · Patent Application Filed February 2026**
 
 > The first platform to directly measure, verify, and tokenise emissions reductions from UK HGV fleets in real time.
 
