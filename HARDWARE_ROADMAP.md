@@ -123,10 +123,10 @@ The ATECC608A is the preferred embodiment of the independent cryptographic co-pr
 | ATECC608A key provisioning process (secure factory programming) | Weeks 38–42 |
 | Installation process documentation and contractor training | Weeks 40–44 |
 | Supply chain stress testing — dual-source critical components | Weeks 40–44 |
-| Cost target validation (£473/unit CAC target) | Weeks 42–44 |
+| Cost target validation | Weeks 42–44 |
 | **PVT Completion Review** | **End of Week 44** |
 
-**Success Criteria:** >95% production yield. Unit CAC at or below £473 including installation. ATECC608A key provisioning process validated for secure factory programming. Installation completable in under 2 hours by trained technician. Supply chain validated for volume.
+**Success Criteria:** >95% production yield. Unit CAC at target including installation. ATECC608A key provisioning process validated for secure factory programming. Installation completable in under 2 hours by trained technician. Supply chain validated for volume.
 
 **Estimated Investment:** £160,000 – £400,000
 
@@ -174,7 +174,7 @@ The ATECC608A is the preferred embodiment of the independent cryptographic co-pr
 | IP rating | IP67 — dust-tight, temporary immersion | DVT |
 | Regulatory compliance | CE / UKCA — UK market | DVT |
 | Secure key provisioning | ATECC608A factory programming process validated | PVT |
-| Unit CAC | £473 per rig including installation | PVT |
+| Unit CAC | Target cost per rig including installation | PVT |
 | Production yield | >95% | PVT |
 
 ---
@@ -187,7 +187,7 @@ The ATECC608A is the preferred embodiment of the independent cryptographic co-pr
 | Certification delays (CE/UKCA) | Medium | High | Engage test house at DVT start, not after completion |
 | Field failure rates above target | Low | High | Beta fleet across diverse conditions (urban, motorway, waste, logistics) |
 | Installation complexity | Medium | Medium | Standardised installation kit + certified contractor training programme |
-| Cost overrun above £473 CAC | Low | Medium | DFM review at DVT; volume pricing locked with CM at PVT |
+| Cost overrun above CAC target | Low | Medium | DFM review at DVT; volume pricing locked with CM at PVT |
 | CBAM deadline (Jan 2027) pressure | Fixed | High | DVT completion by Nov 2026 gives 2-month buffer before CBAM live date |
 
 ---
