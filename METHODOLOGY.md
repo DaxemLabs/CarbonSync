@@ -148,7 +148,7 @@ Additionality is demonstrated on two bases:
 
 **Regulatory Additionality:** No UK regulatory requirement exists compelling HGV operators to install real-time fuel flow monitoring systems or generate carbon credits from fleet emissions reductions. The activity goes beyond legal compliance.
 
-**Financial Additionality:** The cost of Sentinel Rig hardware installation (£473/vehicle CAC) and platform fees represents a genuine financial barrier. Without the carbon credit revenue stream, the monitoring activity would not be financially viable for fleet operators. A barrier analysis is provided for each project as part of the Project Description Document (PDD).
+**Financial Additionality:** The cost of Sentinel Rig hardware installation and platform fees represents a genuine financial barrier. Without the carbon credit revenue stream, the monitoring activity would not be financially viable for fleet operators. A barrier analysis is provided for each project as part of the Project Description Document (PDD).
 
 ---
 
