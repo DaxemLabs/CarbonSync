@@ -1,5 +1,5 @@
 # Competitive Landscape — Carbon Credit Tokenization & MRV
-**Daxem Labs · CarbonSync™ · Patent Pending GB2602946.2**
+**Daxem Labs Ltd · Co. No. 16614429 · Patent Application Filed February 2026**
 
 > CarbonSync operates in the intersection of hardware IoT, digital MRV, and carbon tokenization. Most competitors occupy only one of these layers. CarbonSync occupies all three — and owns the layer that matters most: the data at source.
 
