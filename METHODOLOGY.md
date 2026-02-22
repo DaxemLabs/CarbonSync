@@ -1,247 +1,178 @@
-# CarbonSync™ Measurement & Verification Methodology
-**Daxem Labs · Patent Pending GB2602946.2 · Version 1.1 · February 2026**
+# CarbonSync™ — Emissions Measurement & Verification Methodology
 
-> Prepared for submission to Verra (Verified Carbon Standard) and SustainCERT for methodology approval and validation body engagement.
-
----
-
-## 1. Overview
-
-CarbonSync™ is a digital Monitoring, Reporting, and Verification (dMRV) system designed for the quantification and verification of greenhouse gas emissions reductions from UK heavy goods vehicle (HGV) fleets. It is the first system to establish a cryptographically-verifiable, unbroken chain of custody from physical fuel consumption measurement at the vehicle to tokenised Verified Carbon Units (VCUs) on a public blockchain — with no manual data entry at any point in the pipeline.
-
-This document describes the measurement methodology, baseline construction, emissions quantification, additionality demonstration, permanence provisions, and verification architecture.
+*Daxem Labs Ltd · Co. No. 16614429 · Patent Application Filed February 2026*
 
 ---
 
-## 2. Applicability Conditions
+## Overview
 
-This methodology applies to projects that meet all of the following criteria:
+CarbonSync measures, verifies, and tokenises emissions reductions from UK HGV fleets using a hardware-anchored digital MRV (dMRV) approach. The methodology is designed for alignment with Verra VCS standards and is in active engagement with Verra and SustainCERT.
 
-- Fleet consists of diesel-powered HGVs operating in the United Kingdom
-- Vehicles are individually instrumented with a CarbonSync™ Sentinel Rig
-- A minimum 60-day baseline monitoring period is completed prior to intervention
-- Fleet operator commits to a minimum 24-month crediting period
-- Data quality score exceeds 90/100 for each monitored period (see Section 5.3)
+The core principle: every emissions data point is cryptographically signed at the point of physical measurement by dedicated hardware whose state software cannot observe or influence. No manual data entry. No human trust assumptions. Every carbon credit is traceable to a physical measurement event.
 
 ---
 
-## 3. Baseline Emissions Quantification
+## Regulatory & Standards Framework
 
-### 3.1 Baseline Measurement Approach
+### Verra VCS — Methodology in Engagement
+CarbonSync is designed for alignment with the Verified Carbon Standard (VCS). The platform architecture is built to produce the tamper-evident, auditable measurement data that VCS methodology approval requires. Active engagement with Verra and SustainCERT is ongoing.
 
-Baseline emissions are established through direct physical measurement — not estimation, fuel receipts, or OBD-II proxy data. The Sentinel Rig's hall-effect ultrasonic flow sensor measures fuel consumption at pulse level with accuracy exceeding 98%, installed inline on the vehicle fuel return line.
+> **Note:** CarbonSync is in methodology engagement with Verra. VCS methodology approval is in progress and has not yet been formally granted.
 
-This constitutes a **Type 1 (Direct Measurement)** baseline under Verra VCS requirements, providing the highest available data quality tier.
+### DEFRA 2024 Emission Factors
+Fuel consumption and emissions calculations use DEFRA's 2024 greenhouse gas conversion factors for company reporting. These are the UK government's official methodology for fleet emissions quantification and are updated annually.
 
-### 3.2 Baseline Emission Factor
+### UK Emissions Trading Scheme (UK ETS)
+UK HGV operators are subject to the UK ETS. CarbonSync creates the verified baseline data that minimises operator ETS liability by providing auditable, methodology-referenced measurement rather than estimated default values. As the UK carbon price rises toward £40–£100 per tonne through 2030, the difference between verified and unverified baseline data becomes material.
 
-Baseline CO₂e is calculated using the DEFRA 2024 UK Government Greenhouse Gas Conversion Factors for Company Reporting:
+### CSRD Scope 3
+The EU Corporate Sustainability Reporting Directive requires large companies — and their supply chains — to report Scope 3 emissions in a traceable, auditable, methodology-referenced format. Transport is a primary Scope 3 category. CarbonSync provides fleet operators with the verified emissions data their corporate customers now require for CSRD compliance.
+
+---
+
+## Measurement Architecture
+
+### Physical Measurement Layer
+
+**Fuel Flow Sensor**
+- Positive displacement flow meter installed in fuel line
+- Measures actual fuel consumed per trip and per vehicle
+- Resolution: 0.1 litre per pulse
+- Calibrated against OBD-II fuel consumption data at commissioning
+
+**OBD-II Telemetry**
+- Real-time vehicle diagnostics via standardised OBD-II port
+- Parameters captured: engine load, RPM, vehicle speed, fuel trim, intake air temperature, mass air flow
+- Cross-validates fuel sensor readings
+- Detects anomalous engine states that would affect emissions calculation accuracy
+
+**GPS**
+- Route distance verification
+- Journey classification (motorway, A-road, urban)
+- Enables route-adjusted emissions factors where applicable
+- Geofenced zone detection for future low-emission zone compliance
+
+**4G Connectivity**
+- Encrypted transmission to cloud validation layer
+- Offline buffering with signed packet queuing during connectivity loss
+- Packets transmitted with sequence numbers and timestamps for completeness verification
+
+### Cryptographic Integrity Layer
+
+**ATECC608A Secure Element**
+All data packets are SHA-256 signed at source by the ATECC608A CryptoAuthentication secure element before transmission. Key properties:
+
+- Private signing key provisioned at factory and never accessible to software
+- Hardware-accelerated SHA-256 — computation occurs in dedicated silicon
+- FIPS 140-2 compliant true random number generator
+- Active tamper detection with automatic key zeroisation on physical interference
+- Every 30-second data packet is signed and hash-chained to the previous packet
+
+This means: a valid data packet can only have been produced by the specific Sentinel Rig from which it originated. Packet substitution, replay attacks, and data fabrication are cryptographically impossible without physical access to and destruction of the secure element.
+
+---
+
+## Emissions Calculation
+
+### Baseline Establishment
+
+A verified baseline is established for each vehicle over a minimum 90-day measurement period prior to any reduction claim. The baseline captures:
+
+- Fuel consumption per kilometre by route type (motorway, A-road, urban, mixed)
+- Seasonal variation factors
+- Load variation factors (where OBD-II data permits inference)
+- Idling time and associated consumption
+
+Baseline data is submitted to the VVB for approval before any credits are issued against reductions.
+
+### Reduction Quantification
+
+Emissions reductions are calculated against the verified baseline using DEFRA 2024 conversion factors:
 
 ```
-Emission Factor:  2.68 kg CO₂e per litre of diesel
-Standard:         DEFRA 2024 · UK Transport · Scope 1
-Scope:            Tailpipe CO₂, CH₄, and N₂O expressed as CO₂e
+Reduction (tCO₂e) = (Baseline_Consumption_L - Actual_Consumption_L) × DEFRA_Factor_kgCO₂e/L × 0.001
 ```
 
-This factor is updated annually in line with DEFRA publication cycles. The factor applicable at the start of each crediting period is locked for that period.
+Where:
+- `Baseline_Consumption_L` = verified baseline litres per km × distance km
+- `Actual_Consumption_L` = measured actual litres consumed (fuel flow sensor, OBD-II cross-validated)
+- `DEFRA_Factor_kgCO₂e/L` = appropriate DEFRA 2024 factor for fuel type
 
-### 3.3 Baseline Period
+For HVO and alternative fuels, the relevant DEFRA lifecycle emissions factor is applied, capturing the full well-to-wheel reduction relative to diesel baseline.
 
-A minimum 60-day continuous monitoring period is required to establish a statistically robust vehicle-specific baseline. During this period, the Sentinel Rig collects:
+### Anomaly Detection — Dataloom™ AI
 
-- Fuel consumption at 30-second intervals (fuelPulse_L)
-- Engine RPM, speed, and load via OBD-II (PIDs 0x0C, 0x0D, 0x04)
-- GPS position, route topology, and elevation profile
-- Ambient conditions via third-party weather API integration
+Per-vehicle LSTM (Long Short-Term Memory) neural network models are trained on each vehicle's individual baseline data. The models flag anomalous readings that require manual review before inclusion in a credit claim:
 
-The baseline model is vehicle-specific. A fleet-average baseline is not used, as this would obscure individual vehicle performance and reduce sensitivity to incremental improvements.
+- Sudden consumption changes inconsistent with route or load profiles
+- Sensor drift or calibration deviation indicators
+- Data gaps or packet sequence breaks
+- Cross-validation failures between fuel sensor and OBD-II readings
 
----
-
-## 4. Project Emissions and Reduction Quantification
-
-### 4.1 Emissions Reduction Calculation
-
-```
-Baseline Emissions (tCO₂e)  =  Fuel_baseline (L)  ×  2.68 kg/L  ÷  1000
-Project Emissions (tCO₂e)   =  Fuel_project (L)   ×  2.68 kg/L  ÷  1000
-Emissions Reduction          =  Baseline Emissions  −  Project Emissions
-Net VCUs Issued              =  Emissions Reduction  ×  (1 − Uncertainty Deduction)
-```
-
-### 4.2 Uncertainty Deduction
-
-A 5% conservative deduction is applied to net reductions prior to VCU issuance to account for measurement uncertainty, sensor calibration tolerances, and model prediction variance. This deduction may be reduced following independent sensor calibration verification by the Validation and Verification Body (VVB).
-
-### 4.3 AI-Assisted Attribution (Dataloom™)
-
-The Dataloom™ AI engine deploys vehicle-specific Long Short-Term Memory (LSTM) neural networks to attribute observed fuel reductions to specific causal factors:
-
-| Reduction Source | Attribution Method |
-|---|---|
-| Fuel efficiency improvements | LSTM prediction vs. actual fuel consumption delta |
-| Route optimisation | GPS route topology comparison vs. baseline routes |
-| Driver behaviour | Engine load profile deviation from baseline distribution |
-| Idle reduction | OBD-II RPM analysis — idle events vs. baseline frequency |
-
-Attribution is performed per vehicle per 30-day period and reported as a percentage breakdown. This granularity satisfies Verra VCS requirements for additionality demonstration at the project activity level.
+Anomaly-flagged data is quarantined and excluded from credit calculations pending VVB review. The target false-positive rate is <5% of all packets.
 
 ---
 
-## 5. Data Integrity and Chain of Custody
+## Verification & Credit Issuance
 
-This is the architectural feature that distinguishes CarbonSync™ from all existing dMRV platforms. The integrity architecture solves the fundamental trust problem in mobile industrial monitoring: **how do you prove that data captured in an uncontrolled environment has not been tampered with between measurement and credit issuance?**
+### VVB (Validated and Verified Body) Process
 
-### 5.1 Hardware-Enforced Cryptographic Integrity
+1. **Registration** — Sentinel Rig commissioned, vehicle enrolled, baseline period begins
+2. **Baseline approval** — 90-day baseline data submitted to VVB for methodology review
+3. **Monitoring** — Continuous measurement with real-time anomaly detection
+4. **Periodic verification** — VVB reviews signed data packets, spot-checks cryptographic integrity, approves reduction claims
+5. **Credit issuance** — On VVB approval, ERC-1155 tokens are minted on Polygon blockchain
 
-The Sentinel Rig uses a dual-processor architecture combining an ESP32 primary MCU with an **ATECC608A dedicated cryptographic secure element** (Microchip CryptoAuthentication IC). These communicate via a **unidirectional I2C interface** — the ATECC608A receives sensor data from the ESP32, computes a SHA-256 HMAC using a hardware-protected signing key, and returns the signed hash. The ATECC608A accepts no command inputs — there is no reverse channel.
+### Blockchain Settlement
 
-This architecture means:
-
-- Hash computation occurs in dedicated ATECC608A silicon — the private signing key physically cannot be extracted by any software attack
-- A compromised ESP32 cannot generate false sensor data and a matching cryptographic hash simultaneously — the hash is computed independently on hardware whose key it cannot access
-- Any post-hoc data modification is computationally detectable by any party with access to the public verification key
-- The ATECC608A's true hardware random number generator (TRNG) with FIPS 140-2 compliant entropy eliminates predictable-seed vulnerabilities present in software-only implementations
-- Tamper detection pins on the ATECC608A trigger a hardware kill-switch (physical interrupt to the cellular modem enable pin) on any physical interference — ceasing transmission and logging the event with timestamp
-
-Each 30-second packet is signed with SHA-256 at source, before transmission, before local storage. The signed hash is embedded in the packet itself and stored in both the cloud and the on-vehicle SD card.
-
-*Patent Pending GB2602946.2 — the ATECC608A is the preferred embodiment of the independent cryptographic co-processor described in Claims 1 and 2. Full hardware architecture specification in [`HARDWARE_ROADMAP.md`](HARDWARE_ROADMAP.md).*
-
-### 5.2 Dual-Persistent Storage
-
-Every reading is written to two independent storage layers simultaneously:
-
-| Layer | Location | Purpose |
-|---|---|---|
-| Primary | Cloud (encrypted, TLS 1.3) | Real-time processing and dashboard |
-| Secondary | On-vehicle SD card (tamper-evident enclosure, IP67) | Audit black box — available for physical inspection |
-
-During network outages, data accumulates on the SD card and transmits as a verified catch-up batch on reconnection. No data is lost during connectivity interruptions.
-
-### 5.3 Data Quality Scoring
-
-Each monitoring period is assigned a quality score (0–100) computed from:
-
-- Sensor signal quality (GPS fix accuracy, 4G RSSI)
-- Data completeness (percentage of expected 30-second packets received)
-- Cross-validation pass rate (fuel / OBD-II / GPS consistency checks)
-- Hash verification pass rate (ATECC608A cryptographic integrity)
-
-Only periods scoring ≥90 are included in VCU calculations. Periods scoring 75–89 are flagged for VVB review. Periods below 75 are excluded.
-
-### 5.4 Multi-Modal Cross-Validation
-
-The Dataloom™ validation layer cross-checks three independent data streams on every packet:
-
-1. **Fuel flow** (direct physical measurement — flow sensor)
-2. **Engine telemetry** (OBD-II — RPM, speed, engine load)
-3. **GPS** (position, distance, elevation delta)
-
-Anomalies are flagged when these streams are inconsistent with each other. The false positive rate is below 1%, compared to 3–5% for software-only validation systems — a direct result of the ATECC608A hardware architecture described in Section 5.1.
+- **Token standard:** ERC-1155 on Polygon PoS
+- **Metadata:** IPFS content hash linking to full measurement dataset, VVB approval reference, vehicle ID, measurement period
+- **Immutability:** Once minted, the credit record cannot be altered — the on-chain token permanently references the off-chain measurement data via content-addressed storage
+- **Settlement:** Credits settled at ACX market rate; revenue distributed automatically via smart contract (70% fleet operator / 15% platform / 10% VVB / 5% registry)
 
 ---
 
-## 6. Additionality
+## Data Retention & Audit Trail
 
-Additionality is demonstrated on two bases:
+All measurement data is retained for a minimum of 7 years in accordance with Verra VCS requirements:
 
-**Regulatory Additionality:** No UK regulatory requirement exists compelling HGV operators to install real-time fuel flow monitoring systems or generate carbon credits from fleet emissions reductions. The activity goes beyond legal compliance.
+- Raw signed packets (immutable, stored in IPFS)
+- Processed emissions calculations with full audit trail
+- Anomaly detection logs
+- VVB correspondence and approval records
+- Blockchain transaction records
 
-**Financial Additionality:** The cost of Sentinel Rig hardware installation and platform fees represents a genuine financial barrier. Without the carbon credit revenue stream, the monitoring activity would not be financially viable for fleet operators. A barrier analysis is provided for each project as part of the Project Description Document (PDD).
-
----
-
-## 7. Permanence
-
-This methodology generates credits from emissions reductions in fuel consumption — not from carbon sequestration. Permanence risk (reversal) is therefore minimal: a tonne of CO₂e not emitted due to verified fuel savings cannot be "reversed." No buffer pool contribution is required under VCS for this reduction category.
+The complete chain from physical sensor pulse to minted token is reconstructable and auditable at any point.
 
 ---
 
-## 8. Verification Architecture
+## Limitations & Scope
 
-### 8.1 Automated Verification Package
+**Current scope:**
+- UK HGV fleets (7.5t+) operating on diesel or HVO
+- Road transport emissions (tank-to-wheel)
+- Fuel consumption reduction credits
 
-At the close of each monitoring period, the Dataloom™ platform automatically generates a structured verification package containing:
+**Not currently in scope:**
+- Electric HGV (upstream electricity emissions — future roadmap)
+- Refrigeration unit emissions (future roadmap)
+- Sea or air freight
 
-- Complete sensor data with ATECC608A cryptographic hash chain
-- Quality scores and anomaly logs
-- Baseline vs. project emissions comparison
-- LSTM attribution breakdown by reduction source
-- IPFS content hash linking on-chain tokens to underlying data
-
-This package is formatted for direct submission to the VVB via REST API, replacing manual document compilation.
-
-### 8.2 Verification Cost Reduction
-
-The automated pipeline reduces verification cost from the industry standard of **$3–5/tonne** (manual methodology) to an estimated **$0.50–0.75/tonne** — an 80–85% reduction. This is achieved by replacing manual document review with computational hash verification. Auditors verify ATECC608A chain-of-custody integrity in seconds rather than hours. Physical site visit frequency is reduced from every crediting period to annually, owing to the cryptographic confidence provided by the hardware architecture.
-
-### 8.3 Time-to-Credit
-
-Automated packaging reduces the time from monitoring period close to VCU issuance from the industry standard of **6–12 months** (manual methodologies) to a target of **30–60 days**, enabling near-real-time monetisation of emissions reductions.
-
-### 8.4 Blockchain Tokenisation
-
-Upon VVB approval, VCUs are minted as ERC-1155 tokens on Polygon Mainnet (proof-of-stake — >99% lower energy than proof-of-work networks). Each token contains:
-
-- IPFS content hash linking to the full verification package
-- Vehicle ID, monitoring period, tCO₂e quantity
-- VVB certificate reference
-- Immutable minting timestamp
-
-The blockchain record provides a publicly auditable, tamper-proof registry of all issued credits that is independent of any single organisation's systems.
+**Methodology status:**
+- Designed for Verra VCS alignment — methodology in active engagement
+- DEFRA 2024 emission factors: current as of publication
+- UK ETS applicability: subject to scheme expansion schedule
 
 ---
 
-## 9. Pilot Project
+## Further Documentation
 
-The inaugural CarbonSync™ project is being conducted in partnership with a **strategic validation partner (to be announced)**, deploying Sentinel Rigs across their HGV fleet in Q2 2026. Pilot data will form the empirical basis for this methodology's submission to Verra and for SustainCERT validation engagement.
-
-The live platform demonstrating real-time operation of this methodology is available at:
-**[https://daxemlabs.github.io/CarbonSync/carbonsync-demo.html](https://daxemlabs.github.io/CarbonSync/carbonsync-demo.html)**
-
-See [`PILOT_PROGRAM.md`](PILOT_PROGRAM.md) for pilot partner eligibility and programme details.
+→ [ARCHITECTURE.md](./ARCHITECTURE.md) — Full hardware and software system design  
+→ [SECURITY.md](./SECURITY.md) — Cryptographic schema and security model  
+→ [Live Demo](https://daxemlabs.github.io/CarbonSync/carbonsync-demo.html) — Interactive platform demonstration
 
 ---
 
-## 10. Standards Alignment
-
-| Standard / Framework | Alignment |
-|---|---|
-| Verra Verified Carbon Standard (VCS) | Methodology submission in preparation |
-| DEFRA 2024 GHG Conversion Factors | Emission factor adopted (2.68 kg CO₂e/L diesel) |
-| ISO 14064-2 | Project-level GHG quantification and reporting |
-| UK CBAM (effective 1 Jan 2027) | Verified actual emissions data satisfies HMRC requirements |
-| TCFD | Scope 1 and Scope 3 transport emissions reporting |
-| FIPS 140-2 | ATECC608A TRNG entropy source compliance |
-
----
-
-## Appendix A — Cryptographic Architecture Summary
-
-| Component | Role | Key Property |
-|---|---|---|
-| ESP32-WROOM-32 | Primary MCU — sensor management, data aggregation, transmission | General-purpose processing |
-| ATECC608A | Dedicated secure element — SHA-256 HMAC, key storage, TRNG, tamper detection | Hardware-enforced — keys physically unextractable |
-| Unidirectional I2C interface | Data channel ESP32 → ATECC608A | No reverse command channel |
-| SHA-256 HMAC | Per-packet signing at 30-second intervals | Tamper-evident at source |
-| Hardware kill-switch | Physical interrupt to cellular modem on hash mismatch | Ceases transmission on detected tampering |
-| Dual-persistent storage | Cloud (TLS 1.3) + on-vehicle SD (IP67) | No single point of failure for audit trail |
-
-*Full hardware specifications and phase-gate development milestones in [`HARDWARE_ROADMAP.md`](HARDWARE_ROADMAP.md).*
-
----
-
-## 11. Contact
-
-**Daxem Labs**
-Patent: GB2602946.2 (filed February 2026)
-Platform: [daxem.ai](https://daxem.ai)
-GitHub: [github.com/DaxemLabs/CarbonSync](https://github.com/DaxemLabs/CarbonSync)
-Methodology enquiries: [methodology@daxem.ai](mailto:methodology@daxem.ai)
-
-*For methodology enquiries, VVB engagement, or pilot partnership discussions, please contact Daxem Labs directly.*
-
----
-
-*CarbonSync™ is a trademark of Daxem Labs. Patent pending GB2602946.2. All methodology documentation © Daxem Labs 2026.*
+*CarbonSync™ is a trademark of Daxem Labs Ltd · Co. No. 16614429 · London, UK*  
+*Patent Application Filed February 2026 · All rights reserved*  
+*[daxem.ai](https://daxem.ai)*
