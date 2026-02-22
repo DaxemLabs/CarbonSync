@@ -1,5 +1,5 @@
 # Pilot Program — Sentinel Rig Beta Fleet
-**Daxem Labs · CarbonSync™ · Patent Pending GB2602946.2**
+**Daxem Labs Ltd · Co. No. 16614429 · Patent Application Filed February 2026**
 
 > CarbonSync is now accepting applications for its inaugural beta fleet pilot — a structured 6-month programme designed to validate hardware performance, carbon credit methodology, and commercial viability at scale.
 
