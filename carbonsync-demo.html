@@ -323,9 +323,10 @@
   .tabs {
     display: flex;
     gap: 0;
-    padding: 0 24px;
-    border-bottom: 1px solid var(--border);
+    padding: 0 16px;
+    border-bottom: 2px solid var(--border);
     background: var(--dark);
+    overflow-x: auto;
   }
 
   .tab {
@@ -336,16 +337,20 @@
     text-transform: uppercase;
     color: var(--text-faint);
     cursor: pointer;
-    border-bottom: 2px solid transparent;
+    border-bottom: 3px solid transparent;
+    margin-bottom: -2px;
     transition: all 0.2s;
     white-space: nowrap;
+    user-select: none;
+    position: relative;
   }
 
-  .tab:hover { color: var(--text-dim); }
+  .tab:hover { color: var(--text); background: rgba(255,255,255,0.03); }
 
   .tab.active {
     color: var(--green);
     border-bottom-color: var(--green);
+    background: rgba(0,255,135,0.05);
   }
 
   /* MAIN CONTENT */
@@ -368,8 +373,10 @@
   }
 
   .section-header p {
-    font-size: 13px;
+    font-size: 15px;
     color: var(--text-dim);
+    line-height: 1.6;
+    max-width: 860px;
   }
 
   /* STAT CARDS ROW */
@@ -1015,7 +1022,7 @@
     <div class="tab" onclick="switchTab('credits')">Carbon Credits</div>
     <div class="tab" onclick="switchTab('blockchain')">Blockchain Ledger</div>
     <div class="tab" onclick="switchTab('revenue')">Revenue</div>
-    <div class="tab" onclick="switchTab('cbam')" style="color:var(--red);border-bottom:2px solid transparent;" id="cbam-tab-btn">⚠ CBAM Exposure</div>
+    <div class="tab" onclick="switchTab('cbam')" style="color:var(--green);border-bottom:2px solid transparent;" id="cbam-tab-btn">📊 Compliance Value</div>
   </div>
 
   <!-- OVERVIEW TAB -->
@@ -1474,23 +1481,32 @@
     </div>
   </div>
 
-<!-- CBAM EXPOSURE TAB -->
+<!-- COMPLIANCE VALUE TAB -->
 <div class="content tab-content" id="tab-cbam">
   <div class="section-header" style="margin-top:8px;">
-    <h2 style="color:var(--red);">⚠ CBAM Compliance Exposure</h2>
-    <p>UK Carbon Border Adjustment Mechanism · Effective 1 January 2027 · What it costs you to do nothing vs. what CarbonSync™ saves you.</p>
+    <h2 style="color:var(--green);">📊 Compliance Value — CSRD Scope 3 &amp; UK ETS</h2>
+    <p>Your customers need verified, auditable transport emissions data. CarbonSync makes you the carrier that can provide it — and pays you a revenue share to do so.</p>
   </div>
 
-  <!-- URGENCY BANNER -->
-  <div style="background:linear-gradient(135deg,rgba(239,68,68,0.12),rgba(239,68,68,0.04));border:1px solid rgba(239,68,68,0.4);border-radius:12px;padding:20px 24px;margin-bottom:20px;display:flex;align-items:center;gap:20px;">
-    <div style="font-size:36px;flex-shrink:0;">⏱</div>
-    <div>
-      <div style="font-family:var(--display);font-size:17px;font-weight:700;color:var(--red);margin-bottom:4px;">CBAM goes live in <span id="cbam-countdown">—</span> days</div>
-      <div style="font-size:13px;color:var(--text-dim);line-height:1.5;">The UK Carbon Border Adjustment Mechanism takes effect <strong style="color:var(--text);">1 January 2027</strong>. Every tonne of unverified emissions your fleet generates will be priced at the prevailing UK ETS rate. <strong style="color:var(--amber);">Fleet operators importing or supplying goods across the UK–EU corridor face direct CBAM liability.</strong> Your data is the only defence.</div>
+  <!-- PRIMARY URGENCY BANNER — CSRD -->
+  <div style="background:linear-gradient(135deg,rgba(0,255,135,0.08),rgba(0,255,135,0.03));border:1px solid rgba(0,255,135,0.3);border-radius:12px;padding:20px 24px;margin-bottom:16px;display:flex;align-items:center;gap:20px;">
+    <div style="font-size:36px;flex-shrink:0;">📋</div>
+    <div style="flex:1;">
+      <div style="font-family:var(--display);font-size:17px;font-weight:700;color:var(--green);margin-bottom:4px;">Your customers are already asking for this data</div>
+      <div style="font-size:15px;color:var(--text-dim);line-height:1.65;">The EU Corporate Sustainability Reporting Directive (CSRD) is in force. UK subsidiaries of EU companies — and any UK business supplying EU-connected buyers — must report Scope 3 emissions that are <strong style="color:var(--text);">traceable, auditable, and methodology-referenced.</strong> Transport is a primary Scope 3 category. Your customers are beginning to require verified transport emissions data in tender specifications and contract renewals. <strong style="color:var(--green);">The carrier that can provide it wins and retains the contract.</strong></div>
     </div>
     <div style="margin-left:auto;text-align:center;flex-shrink:0;">
-      <div style="font-family:var(--display);font-size:32px;font-weight:800;color:var(--red);" id="cbam-total-liability">£0</div>
-      <div style="font-family:var(--mono);font-size:10px;color:rgba(239,68,68,0.7);letter-spacing:0.08em;text-transform:uppercase;">Est. Annual Liability</div>
+      <div style="font-family:var(--display);font-size:32px;font-weight:800;color:var(--green);" id="cbam-total-liability">£0</div>
+      <div style="font-family:var(--mono);font-size:10px;color:rgba(0,255,135,0.7);letter-spacing:0.08em;text-transform:uppercase;">Annual Contract Value at Risk</div>
+    </div>
+  </div>
+
+  <!-- UK ETS URGENCY BANNER -->
+  <div style="background:linear-gradient(135deg,rgba(245,158,11,0.08),rgba(245,158,11,0.03));border:1px solid rgba(245,158,11,0.25);border-radius:12px;padding:16px 24px;margin-bottom:20px;display:flex;align-items:center;gap:20px;">
+    <div style="font-size:28px;flex-shrink:0;">⚡</div>
+    <div style="flex:1;">
+      <div style="font-family:var(--display);font-size:15px;font-weight:700;color:var(--amber);margin-bottom:3px;">UK ETS expanding — your liability grows without a verified baseline</div>
+      <div style="font-size:12px;color:var(--text-dim);line-height:1.6;">UK HGV operators are subject to the UK Emissions Trading Scheme. Carbon price projected at <strong style="color:var(--amber);">£40–£100/tonne through 2030.</strong> Fleets without verified baseline data pay maximum ETS rates. CarbonSync creates the baseline that minimises your liability — and simultaneously generates carbon credit revenue from measured reductions. <strong style="color:var(--text);">UK ETS expansion: 1 January 2027 · <span id="cbam-countdown">—</span> days away.</strong></div>
     </div>
   </div>
 
@@ -1499,78 +1515,78 @@
 
     <!-- FLEET OPERATORS -->
     <div style="background:var(--panel);border:1px solid var(--border);border-radius:12px;overflow:hidden;">
-      <div style="background:rgba(239,68,68,0.08);border-bottom:1px solid rgba(239,68,68,0.2);padding:14px 18px;display:flex;align-items:center;gap:10px;">
+      <div style="background:rgba(0,255,135,0.06);border-bottom:1px solid rgba(0,255,135,0.15);padding:14px 18px;display:flex;align-items:center;gap:10px;">
         <span style="font-size:20px;">🚛</span>
         <div>
           <div style="font-family:var(--display);font-size:13px;font-weight:700;color:var(--text);">Fleet Operators</div>
-          <div style="font-family:var(--mono);font-size:9px;color:var(--text-dim);letter-spacing:0.08em;text-transform:uppercase;">What this means on the ground</div>
+          <div style="font-family:var(--mono);font-size:9px;color:var(--text-dim);letter-spacing:0.08em;text-transform:uppercase;">Commercial &amp; ETS exposure</div>
         </div>
       </div>
       <div style="padding:18px;display:flex;flex-direction:column;gap:12px;">
         <div style="background:var(--dark);border-radius:8px;padding:14px;border:1px solid var(--border);">
           <div style="font-family:var(--mono);font-size:10px;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:6px;">Without CarbonSync™</div>
           <div style="font-size:12px;color:var(--text-dim);line-height:1.6;">
-            ❌ No verified emissions data<br>
-            ❌ Pay <strong style="color:var(--red);">default HMRC penalty rates</strong> — highest possible charge<br>
-            ❌ Manual compliance: <strong style="color:var(--red);">£3–5/tonne</strong> admin cost<br>
-            ❌ Customer contracts at risk — EU clients need your data<br>
-            ❌ CBAM liability lands as a <strong style="color:var(--red);">surprise tax bill</strong> Q1 2027
+            ❌ Cannot answer customer Scope 3 data requests<br>
+            ❌ Losing tenders to carriers who can provide it<br>
+            ❌ Pay <strong style="color:var(--red);">maximum UK ETS rates</strong> — no verified baseline<br>
+            ❌ Manual compliance: <strong style="color:var(--red);">£3–5/tonne</strong> admin overhead<br>
+            ❌ Contract renewals at risk as CSRD deadlines hit
           </div>
         </div>
         <div style="background:var(--green-faint);border-radius:8px;padding:14px;border:1px solid rgba(0,255,135,0.15);">
           <div style="font-family:var(--mono);font-size:10px;color:var(--green);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:6px;">With CarbonSync™</div>
           <div style="font-size:12px;color:var(--text-dim);line-height:1.6;">
-            ✅ <strong style="color:var(--green);">Verified actual emissions</strong> — not default values<br>
-            ✅ Verified data = <strong style="color:var(--green);">lowest possible CBAM charge</strong><br>
-            ✅ Auto-generated CBAM-ready reports<br>
-            ✅ EU clients satisfied — you become the preferred carrier<br>
-            ✅ Carbon credits <strong style="color:var(--green);">offset your liability</strong> and generate profit
+            ✅ <strong style="color:var(--green);">Verified Scope 3 data</strong> — auditable, methodology-referenced<br>
+            ✅ Win tenders — become the carrier customers specify<br>
+            ✅ Verified baseline = <strong style="color:var(--green);">minimum UK ETS liability</strong><br>
+            ✅ Auto-generated CSRD-ready reports<br>
+            ✅ Carbon credits <strong style="color:var(--green);">generate revenue</strong> from measured reductions
           </div>
         </div>
         <div style="text-align:center;padding:12px;background:rgba(0,255,135,0.05);border-radius:8px;border:1px solid rgba(0,255,135,0.1);">
-          <div style="font-family:var(--mono);font-size:10px;color:var(--text-dim);margin-bottom:4px;">NET ANNUAL SWING</div>
+          <div style="font-family:var(--mono);font-size:10px;color:var(--text-dim);margin-bottom:4px;">NET ANNUAL VALUE</div>
           <div style="font-family:var(--display);font-size:24px;font-weight:800;color:var(--green);" id="fleet-net-swing">£0</div>
-          <div style="font-size:11px;color:var(--text-dim);">Liability avoided + credits earned</div>
+          <div style="font-size:11px;color:var(--text-dim);">ETS saving + credits earned</div>
         </div>
       </div>
     </div>
 
-    <!-- CORPORATES -->
+    <!-- CORPORATE PROCUREMENT -->
     <div style="background:var(--panel);border:1px solid var(--border);border-radius:12px;overflow:hidden;">
       <div style="background:rgba(14,165,233,0.08);border-bottom:1px solid rgba(14,165,233,0.2);padding:14px 18px;display:flex;align-items:center;gap:10px;">
         <span style="font-size:20px;">🏢</span>
         <div>
           <div style="font-family:var(--display);font-size:13px;font-weight:700;color:var(--text);">Corporate Procurement</div>
-          <div style="font-family:var(--mono);font-size:9px;color:var(--text-dim);letter-spacing:0.08em;text-transform:uppercase;">Supply chain & ESG exposure</div>
+          <div style="font-family:var(--mono);font-size:9px;color:var(--text-dim);letter-spacing:0.08em;text-transform:uppercase;">CSRD Scope 3 supply chain</div>
         </div>
       </div>
       <div style="padding:18px;display:flex;flex-direction:column;gap:12px;">
         <div style="background:var(--dark);border-radius:8px;padding:14px;border:1px solid var(--border);">
-          <div style="font-family:var(--mono);font-size:10px;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:6px;">The Supply Chain Problem</div>
+          <div style="font-family:var(--mono);font-size:10px;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:6px;">The Scope 3 Problem</div>
           <div style="font-size:12px;color:var(--text-dim);line-height:1.6;">
-            Under CBAM, <strong style="color:var(--amber);">you are liable for emissions in your supply chain</strong> — including transport. EU clients will demand verified carbon data from their UK logistics partners. If your carrier can't provide it, <strong style="color:var(--red);">you bear the CBAM cost</strong> or lose the contract.
+            CSRD requires large corporates to report <strong style="color:var(--amber);">transport as a primary Scope 3 category.</strong> They need verified, auditable data from their logistics partners. If your carrier cannot provide methodology-referenced emissions data, <strong style="color:var(--red);">you have a reporting gap — or you lose them as a client.</strong>
           </div>
         </div>
         <div style="display:flex;flex-direction:column;gap:8px;">
           <div style="background:var(--dark);border:1px solid var(--border);border-radius:8px;padding:12px;display:flex;justify-content:space-between;align-items:center;">
-            <span style="font-size:12px;color:var(--text-dim);">Scope 3 transport emissions</span>
-            <span style="font-family:var(--mono);font-size:12px;color:var(--red);" id="corp-scope3">0 tCO₂e</span>
+            <span style="font-size:12px;color:var(--text-dim);">Annual Scope 3 transport emissions</span>
+            <span style="font-family:var(--mono);font-size:12px;color:var(--amber);" id="corp-scope3">0 tCO₂e</span>
           </div>
           <div style="background:var(--dark);border:1px solid var(--border);border-radius:8px;padding:12px;display:flex;justify-content:space-between;align-items:center;">
-            <span style="font-size:12px;color:var(--text-dim);">Unverified CBAM exposure</span>
-            <span style="font-family:var(--mono);font-size:12px;color:var(--red);" id="corp-cbam-exp">£0</span>
+            <span style="font-size:12px;color:var(--text-dim);">Unverified data — CSRD reporting gap</span>
+            <span style="font-family:var(--mono);font-size:12px;color:var(--red);" id="corp-cbam-exp">High Risk</span>
           </div>
           <div style="background:var(--dark);border:1px solid var(--border);border-radius:8px;padding:12px;display:flex;justify-content:space-between;align-items:center;">
-            <span style="font-size:12px;color:var(--text-dim);">ESG reporting gap</span>
-            <span class="badge warn">High Risk</span>
+            <span style="font-size:12px;color:var(--text-dim);">CBAM supply chain pressure</span>
+            <span class="badge warn">Indirect</span>
           </div>
           <div style="background:var(--green-faint);border:1px solid rgba(0,255,135,0.15);border-radius:8px;padding:12px;display:flex;justify-content:space-between;align-items:center;">
             <span style="font-size:12px;color:var(--text-dim);">With CarbonSync™ carrier</span>
-            <span class="badge ok">Compliant</span>
+            <span class="badge ok">CSRD Compliant</span>
           </div>
         </div>
         <div style="font-size:11px;color:var(--text-faint);font-family:var(--mono);line-height:1.6;padding:10px;background:var(--dark);border-radius:8px;border:1px solid var(--border);">
-          💡 Specifying CarbonSync-certified carriers in procurement terms eliminates your Scope 3 CBAM exposure and satisfies TCFD reporting requirements simultaneously.
+          💡 Specifying CarbonSync-certified carriers in procurement terms satisfies CSRD Scope 3 transport reporting and TCFD requirements simultaneously.
         </div>
       </div>
     </div>
@@ -1580,23 +1596,23 @@
       <div style="background:rgba(245,158,11,0.08);border-bottom:1px solid rgba(245,158,11,0.2);padding:14px 18px;display:flex;align-items:center;gap:10px;">
         <span style="font-size:20px;">📈</span>
         <div>
-          <div style="font-family:var(--display);font-size:13px;font-weight:700;color:var(--text);">Investors & VCs</div>
+          <div style="font-family:var(--display);font-size:13px;font-weight:700;color:var(--text);">Investors &amp; VCs</div>
           <div style="font-family:var(--mono);font-size:9px;color:var(--text-dim);letter-spacing:0.08em;text-transform:uppercase;">The market opportunity</div>
         </div>
       </div>
       <div style="padding:18px;display:flex;flex-direction:column;gap:12px;">
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
           <div style="background:var(--dark);border:1px solid var(--border);border-radius:8px;padding:12px;text-align:center;">
-            <div style="font-family:var(--display);font-size:20px;font-weight:800;color:var(--amber);">£50B+</div>
-            <div style="font-family:var(--mono);font-size:9px;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-top:4px;">UK CBAM addressable market</div>
+            <div style="font-family:var(--display);font-size:20px;font-weight:800;color:var(--green);">£2.1B</div>
+            <div style="font-family:var(--mono);font-size:9px;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-top:4px;">UK HGV TAM</div>
           </div>
           <div style="background:var(--dark);border:1px solid var(--border);border-radius:8px;padding:12px;text-align:center;">
-            <div style="font-family:var(--display);font-size:20px;font-weight:800;color:var(--red);">Jan 2027</div>
-            <div style="font-family:var(--mono);font-size:9px;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-top:4px;">Non-negotiable deadline</div>
+            <div style="font-family:var(--display);font-size:20px;font-weight:800;color:var(--amber);">Active Now</div>
+            <div style="font-family:var(--mono);font-size:9px;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-top:4px;">CSRD in force</div>
           </div>
           <div style="background:var(--dark);border:1px solid var(--border);border-radius:8px;padding:12px;text-align:center;">
-            <div style="font-family:var(--display);font-size:20px;font-weight:800;color:var(--green);">£40–60</div>
-            <div style="font-family:var(--mono);font-size:9px;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-top:4px;">UK ETS rate / tonne</div>
+            <div style="font-family:var(--display);font-size:20px;font-weight:800;color:var(--green);">£40–100</div>
+            <div style="font-family:var(--mono);font-size:9px;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-top:4px;">UK ETS £/tonne 2030</div>
           </div>
           <div style="background:var(--dark);border:1px solid var(--border);border-radius:8px;padding:12px;text-align:center;">
             <div style="font-family:var(--display);font-size:20px;font-weight:800;color:var(--blue);">500k+</div>
@@ -1606,24 +1622,24 @@
         <div style="background:var(--dark);border-radius:8px;padding:14px;border:1px solid var(--border);">
           <div style="font-family:var(--mono);font-size:10px;color:var(--amber);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px;">Why CarbonSync™ wins this market</div>
           <div style="font-size:12px;color:var(--text-dim);line-height:1.7;">
-            CBAM creates a <strong style="color:var(--text);">mandatory, recurring compliance spend</strong> for every UK fleet operator. CarbonSync™ is the only platform that converts that spend into a <strong style="color:var(--green);">profit centre</strong> — verified data that both eliminates the liability AND generates tradeable carbon credits.<br><br>
-            Competitors offer reporting tools. <strong style="color:var(--text);">We offer a revenue engine.</strong> That's a fundamentally different value proposition — and a defensible moat as CBAM expands post-2027.
+            CarbonSync converts a <strong style="color:var(--text);">mandatory, growing compliance spend</strong> — CSRD Scope 3 verification and UK ETS expansion — into a <strong style="color:var(--green);">profit centre for fleet operators.</strong> The only hardware-anchored dMRV platform in the UK HGV market.<br><br>
+            Every CarbonSync-certified carrier creates demand from their customers for the same standard. <strong style="color:var(--text);">Network effect compounds the installed base.</strong>
           </div>
         </div>
         <div style="text-align:center;padding:12px;background:rgba(245,158,11,0.05);border-radius:8px;border:1px solid rgba(245,158,11,0.15);">
-          <div style="font-family:var(--mono);font-size:10px;color:var(--text-dim);margin-bottom:4px;">CBAM DRIVES DAXEM TAM TO</div>
+          <div style="font-family:var(--mono);font-size:10px;color:var(--text-dim);margin-bottom:4px;">CSRD + UK ETS DRIVES TAM TO</div>
           <div style="font-family:var(--display);font-size:24px;font-weight:800;color:var(--amber);" id="vc-tam">£0</div>
-          <div style="font-size:11px;color:var(--text-dim);">UK fleet CBAM compliance market by 2027</div>
+          <div style="font-size:11px;color:var(--text-dim);">UK fleet compliance market by 2030</div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- CBAM CALCULATOR -->
-  <div style="background:var(--panel);border:1px solid rgba(239,68,68,0.3);border-radius:12px;overflow:hidden;margin-bottom:16px;">
-    <div style="background:rgba(239,68,68,0.06);border-bottom:1px solid rgba(239,68,68,0.2);padding:16px 20px;display:flex;align-items:center;justify-content:space-between;">
+  <!-- SCOPE 3 VALUE CALCULATOR -->
+  <div style="background:var(--panel);border:1px solid rgba(0,255,135,0.25);border-radius:12px;overflow:hidden;margin-bottom:16px;">
+    <div style="background:rgba(0,255,135,0.05);border-bottom:1px solid rgba(0,255,135,0.15);padding:16px 20px;display:flex;align-items:center;justify-content:space-between;">
       <div>
-        <div style="font-family:var(--display);font-size:14px;font-weight:700;">Your CBAM Liability Calculator</div>
+        <div style="font-family:var(--display);font-size:14px;font-weight:700;">Scope 3 &amp; UK ETS Value Calculator</div>
         <div style="font-family:var(--mono);font-size:10px;color:var(--text-dim);letter-spacing:0.06em;text-transform:uppercase;margin-top:2px;">Based on your fleet · UK ETS rate · DEFRA 2024 methodology</div>
       </div>
       <div style="display:flex;align-items:center;gap:8px;">
@@ -1639,53 +1655,72 @@
     </div>
     <div style="padding:20px;">
       <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:20px;">
-        <div style="background:var(--dark);border:1px solid rgba(239,68,68,0.2);border-radius:10px;padding:16px;text-align:center;">
+        <div style="background:var(--dark);border:1px solid rgba(0,255,135,0.15);border-radius:10px;padding:16px;text-align:center;">
           <div style="font-family:var(--mono);font-size:10px;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px;">Annual Fleet Emissions</div>
           <div style="font-family:var(--display);font-size:26px;font-weight:800;color:var(--text);" id="cbam-total-tonnes">0</div>
           <div style="font-family:var(--mono);font-size:10px;color:var(--text-faint);">tCO₂e / year</div>
         </div>
-        <div style="background:var(--dark);border:1px solid rgba(239,68,68,0.3);border-radius:10px;padding:16px;text-align:center;">
-          <div style="font-family:var(--mono);font-size:10px;color:var(--red);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px;">❌ CBAM Cost (No Data)</div>
+        <div style="background:var(--dark);border:1px solid rgba(239,68,68,0.25);border-radius:10px;padding:16px;text-align:center;">
+          <div style="font-family:var(--mono);font-size:10px;color:var(--red);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px;">❌ UK ETS (No Baseline)</div>
           <div style="font-family:var(--display);font-size:26px;font-weight:800;color:var(--red);" id="cbam-no-data-cost">£0</div>
-          <div style="font-family:var(--mono);font-size:10px;color:var(--text-faint);">Default rate applied</div>
+          <div style="font-family:var(--mono);font-size:10px;color:var(--text-faint);">Default rate · max liability</div>
         </div>
         <div style="background:var(--dark);border:1px solid rgba(0,255,135,0.2);border-radius:10px;padding:16px;text-align:center;">
-          <div style="font-family:var(--mono);font-size:10px;color:var(--green);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px;">✅ CBAM Cost (Verified)</div>
+          <div style="font-family:var(--mono);font-size:10px;color:var(--green);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px;">✅ UK ETS (Verified)</div>
           <div style="font-family:var(--display);font-size:26px;font-weight:800;color:var(--green);" id="cbam-with-data-cost">£0</div>
-          <div style="font-family:var(--mono);font-size:10px;color:var(--text-faint);">Actual emissions only</div>
+          <div style="font-family:var(--mono);font-size:10px;color:var(--text-faint);">Verified baseline · min liability</div>
         </div>
         <div style="background:linear-gradient(135deg,rgba(0,255,135,0.08),rgba(14,165,233,0.08));border:1px solid rgba(0,255,135,0.25);border-radius:10px;padding:16px;text-align:center;">
           <div style="font-family:var(--mono);font-size:10px;color:var(--green);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px;">💰 Net CarbonSync™ Benefit</div>
           <div style="font-family:var(--display);font-size:26px;font-weight:800;color:var(--green);" id="cbam-net-benefit">£0</div>
-          <div style="font-family:var(--mono);font-size:10px;color:var(--text-faint);">Saved + credits earned</div>
+          <div style="font-family:var(--mono);font-size:10px;color:var(--text-faint);">ETS saving + credits earned</div>
         </div>
       </div>
 
       <!-- VISUAL COMPARISON BAR -->
       <div style="margin-bottom:20px;">
-        <div style="font-family:var(--mono);font-size:10px;color:var(--text-dim);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:10px;">Cost Comparison — Do Nothing vs. CarbonSync™</div>
+        <div style="font-family:var(--mono);font-size:10px;color:var(--text-dim);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:10px;">Cost Comparison — Unverified vs. CarbonSync™ Verified</div>
         <div style="display:flex;flex-direction:column;gap:8px;">
           <div>
             <div style="display:flex;justify-content:space-between;font-family:var(--mono);font-size:10px;color:var(--text-dim);margin-bottom:4px;">
-              <span>❌ Unverified — CBAM penalty rate applied to all emissions</span>
+              <span>❌ No baseline — UK ETS default rate applied to all emissions</span>
               <span id="bar-label-no" style="color:var(--red);">£0</span>
             </div>
             <div style="height:28px;background:var(--dark);border-radius:4px;overflow:hidden;border:1px solid rgba(239,68,68,0.2);">
               <div style="height:100%;background:linear-gradient(90deg,rgba(239,68,68,0.6),rgba(239,68,68,0.3));width:100%;display:flex;align-items:center;padding:0 10px;">
-                <span style="font-family:var(--mono);font-size:10px;color:rgba(239,68,68,0.9);">Full liability · No offset · No credit income</span>
+                <span style="font-family:var(--mono);font-size:10px;color:rgba(239,68,68,0.9);">Full liability · No verified baseline · No credit income</span>
               </div>
             </div>
           </div>
           <div>
             <div style="display:flex;justify-content:space-between;font-family:var(--mono);font-size:10px;color:var(--text-dim);margin-bottom:4px;">
-              <span>✅ CarbonSync™ — Verified data + credits offset liability</span>
+              <span>✅ CarbonSync™ — Verified baseline + credits offset ETS liability</span>
               <span id="bar-label-cv" style="color:var(--green);">£0 net cost</span>
             </div>
             <div style="height:28px;background:var(--dark);border-radius:4px;overflow:hidden;border:1px solid rgba(0,255,135,0.2);">
               <div id="cbam-cv-bar" style="height:100%;background:linear-gradient(90deg,rgba(0,255,135,0.5),rgba(0,255,135,0.2));transition:width 1s ease;width:0%;display:flex;align-items:center;padding:0 10px;">
-                <span style="font-family:var(--mono);font-size:10px;color:rgba(0,255,135,0.9);">Reduced liability + carbon credit revenue</span>
+                <span style="font-family:var(--mono);font-size:10px;color:rgba(0,255,135,0.9);">Verified baseline · reduced ETS · carbon credit revenue</span>
               </div>
             </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SCOPE 3 DATA VALUE PANEL -->
+      <div style="background:linear-gradient(135deg,rgba(14,165,233,0.06),rgba(0,255,135,0.04));border:1px solid rgba(14,165,233,0.2);border-radius:10px;padding:16px;margin-bottom:20px;">
+        <div style="font-family:var(--mono);font-size:10px;color:#0ea5e9;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:12px;">CSRD Scope 3 Transport Data Value</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;">
+          <div style="background:var(--dark);border-radius:8px;padding:12px;text-align:center;">
+            <div style="font-family:var(--display);font-size:18px;font-weight:800;color:#0ea5e9;" id="scope3-total">0 tCO₂e</div>
+            <div style="font-family:var(--mono);font-size:9px;color:var(--text-dim);margin-top:4px;">Scope 3 transport data your customers need</div>
+          </div>
+          <div style="background:var(--dark);border-radius:8px;padding:12px;text-align:center;">
+            <div style="font-family:var(--display);font-size:18px;font-weight:800;color:var(--green);">Auditable</div>
+            <div style="font-family:var(--mono);font-size:9px;color:var(--text-dim);margin-top:4px;">Blockchain-anchored · methodology-referenced</div>
+          </div>
+          <div style="background:var(--dark);border-radius:8px;padding:12px;text-align:center;">
+            <div style="font-family:var(--display);font-size:18px;font-weight:800;color:var(--green);">Auto-generated</div>
+            <div style="font-family:var(--mono);font-size:9px;color:var(--text-dim);margin-top:4px;">CSRD-ready reports · zero manual effort</div>
           </div>
         </div>
       </div>
@@ -1693,21 +1728,21 @@
       <!-- YEAR BY YEAR -->
       <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;">
         <div style="background:var(--dark);border:1px solid var(--border);border-radius:8px;padding:14px;">
-          <div style="font-family:var(--mono);font-size:10px;color:var(--amber);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:10px;">2026 — Prepare Now</div>
+          <div style="font-family:var(--mono);font-size:10px;color:var(--amber);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:10px;">2026 — Act Now</div>
           <div style="font-size:12px;color:var(--text-dim);line-height:1.7;">
-            Install Sentinel Rigs · Begin verified data capture · Build your baseline emissions profile · CBAM-ready reports auto-generated · <strong style="color:var(--text);">12 months of verified data before liability hits</strong>
+            Install Sentinel Rigs · Begin verified data capture · Build your baseline · CSRD-ready reports auto-generated · <strong style="color:var(--text);">Start winning tenders with verified Scope 3 data</strong>
           </div>
         </div>
-        <div style="background:var(--dark);border:1px solid rgba(239,68,68,0.2);border-radius:8px;padding:14px;">
-          <div style="font-family:var(--mono);font-size:10px;color:var(--red);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:10px;">2027 — CBAM Live</div>
+        <div style="background:var(--dark);border:1px solid rgba(0,255,135,0.15);border-radius:8px;padding:14px;">
+          <div style="font-family:var(--mono);font-size:10px;color:var(--green);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:10px;">2027 — UK ETS Expands</div>
           <div style="font-size:12px;color:var(--text-dim);line-height:1.7;">
-            Verified data = lowest possible CBAM charge · First VCUs minted · Carbon credit revenue begins · Competitors paying <strong style="color:var(--red);">default penalty rates</strong> while you're profiting
+            Verified baseline = minimum ETS liability · First VCUs minted · Carbon credit revenue begins · <strong style="color:var(--green);">Competitors paying default rates while you profit</strong>
           </div>
         </div>
         <div style="background:var(--dark);border:1px solid rgba(0,255,135,0.15);border-radius:8px;padding:14px;">
           <div style="font-family:var(--mono);font-size:10px;color:var(--green);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:10px;">2028+ — Compounding Advantage</div>
           <div style="font-size:12px;color:var(--text-dim);line-height:1.7;">
-            CBAM expands to more sectors · UK ETS rate rises · Your verified data becomes a <strong style="color:var(--green);">premium asset</strong> · EU clients pay more for CarbonSync-certified logistics
+            CSRD scope widens · ETS rate rises · Your verified data becomes a <strong style="color:var(--green);">procurement specification</strong> · CBAM importers demand CarbonSync-certified carriers
           </div>
         </div>
       </div>
@@ -1720,27 +1755,31 @@
       <div style="font-size:40px;">🛡️</div>
       <div>
         <div style="font-family:var(--display);font-size:16px;font-weight:700;margin-bottom:4px;">The Bottom Line</div>
-        <div style="font-size:13px;color:var(--text-dim);line-height:1.6;">CBAM turns fleet emissions from a hidden liability into a visible, quantified cost. CarbonSync™ is the only platform that <strong style="color:var(--green);">measures it precisely, reports it automatically, and converts the reduction into tradeable revenue</strong>. Every month without Sentinel Rigs is a month of unverifiable data — and unverifiable data means maximum CBAM exposure.</div>
+        <div style="font-size:15px;color:var(--text-dim);line-height:1.65;">Your customers need verified Scope 3 transport data. UK ETS makes a verified baseline financially essential. CarbonSync™ is the only platform that <strong style="color:var(--green);">provides the data your customers require, minimises your ETS liability, and converts measured reductions into tradeable carbon credit revenue</strong>. Every month without Sentinel Rigs is a month of unverifiable data — and unverifiable data means lost tenders and maximum ETS cost.</div>
       </div>
     </div>
     <div style="background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:20px;">
-      <div style="font-family:var(--mono);font-size:10px;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:12px;">Key Dates</div>
+      <div style="font-family:var(--mono);font-size:10px;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:12px;">Key Dates &amp; Drivers</div>
       <div style="display:flex;flex-direction:column;gap:8px;">
         <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border);">
+          <span style="font-size:12px;color:var(--text-dim);">Now</span>
+          <span style="font-family:var(--mono);font-size:11px;color:var(--green);">CSRD Scope 3 active</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border);">
           <span style="font-size:12px;color:var(--text-dim);">Q4 2026</span>
-          <span style="font-family:var(--mono);font-size:11px;color:var(--amber);">Trial CBAM rate published</span>
+          <span style="font-family:var(--mono);font-size:11px;color:var(--amber);">UK ETS expansion rate published</span>
         </div>
         <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border);">
           <span style="font-size:12px;color:var(--text-dim);">1 Jan 2027</span>
-          <span style="font-family:var(--mono);font-size:11px;color:var(--red);">UK CBAM goes live</span>
+          <span style="font-family:var(--mono);font-size:11px;color:var(--amber);">UK ETS expansion live</span>
         </div>
         <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border);">
           <span style="font-size:12px;color:var(--text-dim);">2027+</span>
-          <span style="font-family:var(--mono);font-size:11px;color:var(--amber);">Quarterly ETS rate updates</span>
+          <span style="font-family:var(--mono);font-size:11px;color:var(--amber);">Quarterly ETS rate rises</span>
         </div>
         <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;">
-          <span style="font-size:12px;color:var(--text-dim);">2029</span>
-          <span style="font-family:var(--mono);font-size:11px;color:var(--red);">Indirect emissions added</span>
+          <span style="font-size:12px;color:var(--text-dim);">2028+</span>
+          <span style="font-family:var(--mono);font-size:11px;color:var(--green);">CBAM supply chain pull-through</span>
         </div>
       </div>
     </div>
@@ -2406,42 +2445,57 @@ function showToast(title, sub) {
   setTimeout(() => toast.classList.remove('show'), 4000);
 }
 
-// CBAM CALCULATIONS
+// COMPLIANCE VALUE CALCULATIONS (CSRD Scope 3 + UK ETS)
 function recalcCBAM() {
   const fleet = state.fleetSize;
   const etsEl = document.getElementById('ets-rate-select');
   const etsRate = etsEl ? parseInt(etsEl.value) : 50;
 
+  // Core emissions calculation
   const annualFuelLitres = fleet * (AVG_DISTANCE_KM / 100) * FUEL_CONSUMPTION;
   const annualTonnes = (annualFuelLitres * CO2_FACTOR) / 1000;
 
-  const cbamNoCVCost = annualTonnes * etsRate * 1.5;
+  // UK ETS: without verified baseline, default rate applied (1.5x penalty)
+  // With verified baseline, pay only for actual verified emissions
+  const etsNoBaselineCost = annualTonnes * etsRate * 1.5;
   const verifiedTonnes = annualTonnes * (1 - EFFICIENCY_GAIN);
-  const cbamWithCVCost = verifiedTonnes * etsRate;
+  const etsVerifiedCost = verifiedTonnes * etsRate;
   const creditIncome = calcAnnualCredits() * CREDIT_PRICE * 0.70;
-  const netCVCost = Math.max(0, cbamWithCVCost - creditIncome);
-  const netBenefit = cbamNoCVCost - netCVCost + creditIncome;
-  const ukTAM = 500000 * (annualTonnes / fleet) * etsRate * 0.15;
+  const netVerifiedCost = Math.max(0, etsVerifiedCost - creditIncome);
+  const netBenefit = etsNoBaselineCost - netVerifiedCost + creditIncome;
+
+  // CSRD Scope 3: transport emissions customers need to report
+  // Approx 15% of fleet operator's customers' total Scope 3 is transport
+  const scope3CustomerNeed = annualTonnes * 0.15;
+
+  // Contract value at risk: estimated annual contract value per tonne of
+  // unverifiable Scope 3 data (conservative: £200/tonne contract value)
+  const contractValueAtRisk = scope3CustomerNeed * 200;
+
+  // TAM: CSRD + UK ETS drives addressable market
+  const ukTAM = 500000 * (annualTonnes / fleet) * etsRate * 0.20;
+
+  // Countdown to UK ETS expansion
   const daysLeft = Math.ceil((new Date('2027-01-01') - new Date()) / 86400000);
-  const scope3 = annualTonnes * 0.15;
 
   const el = id => document.getElementById(id);
   if (!el('cbam-countdown')) return;
 
+  // Update all elements
   el('cbam-countdown').textContent = formatNum(daysLeft);
-  el('cbam-total-liability').textContent = formatGBP(cbamNoCVCost);
+  el('cbam-total-liability').textContent = formatGBP(contractValueAtRisk);  // contract value at risk
   el('cbam-total-tonnes').textContent = formatNum(Math.round(annualTonnes));
-  el('cbam-no-data-cost').textContent = formatGBP(cbamNoCVCost);
-  el('cbam-with-data-cost').textContent = formatGBP(netCVCost);
-  el('cbam-net-benefit').textContent = formatGBP(netBenefit);
-  el('bar-label-no').textContent = formatGBP(cbamNoCVCost);
-  el('bar-label-cv').textContent = formatGBP(netCVCost) + ' net cost';
+  el('cbam-no-data-cost').textContent = formatGBP(etsNoBaselineCost);       // ETS no baseline
+  el('cbam-with-data-cost').textContent = formatGBP(netVerifiedCost);       // ETS verified
+  el('cbam-net-benefit').textContent = formatGBP(netBenefit);               // net benefit
+  el('bar-label-no').textContent = formatGBP(etsNoBaselineCost);
+  el('bar-label-cv').textContent = formatGBP(netVerifiedCost) + ' net cost';
   el('fleet-net-swing').textContent = formatGBP(netBenefit);
-  el('corp-scope3').textContent = formatNum(Math.round(scope3)) + ' tCO2e';
-  el('corp-cbam-exp').textContent = formatGBP(scope3 * etsRate);
+  el('corp-scope3').textContent = formatNum(Math.round(scope3CustomerNeed)) + ' tCO₂e';
+  if (el('scope3-total')) el('scope3-total').textContent = formatNum(Math.round(annualTonnes)) + ' tCO₂e';
   el('vc-tam').textContent = formatGBP(ukTAM);
 
-  const cvPct = Math.max(5, (netCVCost / cbamNoCVCost) * 100);
+  const cvPct = Math.max(5, (netVerifiedCost / etsNoBaselineCost) * 100);
   setTimeout(() => {
     const bar = el('cbam-cv-bar');
     if (bar) bar.style.width = cvPct + '%';
