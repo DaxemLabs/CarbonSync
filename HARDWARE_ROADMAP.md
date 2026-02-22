@@ -1,5 +1,5 @@
 # Sentinel Rig — Hardware Development Roadmap
-**Daxem Labs · CarbonSync™ · Patent Pending GB2602946.2**
+**Daxem Labs Ltd · Co. No. 16614429 · Patent Application Filed February 2026**
 
 > From proof of concept to mass production — the engineering pathway for the Sentinel Rig, CarbonSync's hardware foundation.
 
