@@ -1,154 +1,128 @@
-# CarbonSync™ — Live Intelligence Platform
-**by Daxem Labs · Patent Application Filed February 2026**
+# CarbonSync™ — Hardware-Anchored Carbon Credits
 
-> The first platform to directly measure, verify, and tokenise emissions reductions from UK HGV fleets in real time.
+**The first hardware-anchored dMRV platform for UK HGV fleets.**
+
+A Sentinel Rig — combining a fuel flow sensor, OBD-II telemetry, and an ATECC608A cryptographic secure element — installs in any HGV and creates tamper-evident, Verra-auditable emissions data at source. That data flows through Dataloom™ AI validation to the Polygon blockchain, where verified reductions are minted as ERC-1155 carbon credit tokens and settled at market.
+
+Fleet operators earn carbon credit revenue. Their customers get the verified Scope 3 transport data that CSRD and modern procurement frameworks now require. And the carbon market gets something it has never had: a credit it can actually trust.
+
+---
+
+## Why Now
+
+**CSRD Scope 3 — the primary commercial driver**
+
+The EU Corporate Sustainability Reporting Directive is in force. UK subsidiaries of EU companies, and any UK business supplying EU-connected buyers, face Scope 3 reporting requirements that must be traceable, auditable, and methodology-referenced. Transport sits at the core of Scope 3.
+
+Fleet operators cannot currently provide their customers with verified, auditable transport emissions data. Those customers — large corporates, manufacturers, importers — are already requiring it in tender specifications and supplier onboarding. The fleet operator who can provide it wins and retains the contract. The one who cannot loses it.
+
+**UK ETS — the fleet operator's financial exposure**
+
+UK HGV operators are subject to the UK Emissions Trading Scheme. As the scheme expands and the carbon price rises — projected at £40–£100 per tonne through 2030 — fleets with no verified baseline face maximum ETS cost. CarbonSync creates the verified baseline that minimises ETS liability, while simultaneously generating carbon credit revenue from measured reductions.
+
+**CBAM — indirect supply chain pressure**
+
+Importers of steel, aluminium, cement, and other CBAM goods must account for supply chain emissions including transport in their CBAM and CSRD returns. Those importers are asking their logistics partners for verified transport emissions data. A CarbonSync-certified carrier can answer yes. An uncertified carrier cannot. This creates a procurement premium for CarbonSync-certified fleets.
+
+---
+
+## The Pipeline
+
+```
+Sentinel Rig → Dataloom™ AI → Polygon Blockchain → Carbon Market
+```
+
+| Stage | Component | Detail |
+|-------|-----------|--------|
+| 01 | **Sentinel Rig** | ESP32 + ATECC608A · Fuel flow sensor · OBD-II · GPS · 4G |
+| 02 | **Dataloom™ AI** | LSTM per-vehicle models · Multi-modal cross-validation · <5% error rate |
+| 03 | **Polygon Blockchain** | ERC-1155 tokens · IPFS content hash · Auto-minted on VVB approval |
+| 04 | **Carbon Market** | ACX pricing · £72/tCO₂e · 70% to fleet operator · Auto-settled |
+
+Every 30-second packet is SHA-256 signed and hash-chained at source by the ATECC608A secure element. A compromised ESP32 cannot produce a valid hash — the signing key is on independent hardware it cannot access.
+
+→ See [ARCHITECTURE.md](./ARCHITECTURE.md) for full system design  
+→ See [SECURITY.md](./SECURITY.md) for cryptographic schema
+
+---
+
+## The Hardware Moat
+
+Software can be replicated in weeks. A certified automotive-grade secure element with a patented cryptographic architecture and an installed fleet base cannot.
+
+**ATECC608A — Microchip CryptoAuthentication**
+
+- **Hardware-accelerated SHA-256** — Hash computation in dedicated silicon. The private signing key never exists outside the ATECC608A at any point in its lifecycle.
+- **Protected key storage** — 16 hardware-protected slots provisioned at factory. Physically unreadable by any software interface — extraction requires destroying the chip.
+- **FIPS 140-2 compliant TRNG** — True hardware random number generator. Eliminates predictable-seed vulnerabilities present in every software-only implementation.
+- **Active tamper detection** — Internal shield mesh + active pins. Physical interference triggers key zeroisation and hardware kill-switch. Events logged with timestamp.
+
+*Patent Application Filed February 2026 — Preferred embodiment*
+
+---
+
+## Regulatory Alignment
+
+| Framework | Status | Relevance |
+|-----------|--------|-----------|
+| **Verra VCS** | Methodology in engagement | Designed for Verra VCS alignment — active dialogue with Verra and SustainCERT |
+| **DEFRA 2024** | Aligned | Fuel consumption and emissions calculation methodology |
+| **UK ETS** | Active | Verified baseline data minimises operator ETS liability |
+| **CSRD Scope 3** | Active | Provides the auditable transport emissions data corporate customers require |
+| **CBAM** | Indirect | Creates procurement demand from importers for CarbonSync-certified carriers |
+
+---
+
+## Revenue Model
+
+| Party | Share | Basis |
+|-------|-------|-------|
+| Fleet operator | 70% | Primary revenue — carbon credits generated |
+| Daxem Labs (platform) | 15% | Platform and infrastructure fee |
+| VVB / verification | 10% | Third-party audit and certification |
+| Verra registry | 5% | Registry and methodology fee |
+
+---
+
+## Market
+
+- **£2.1B** — UK HGV total addressable market
+- **80% cheaper** than manual MRV approaches
+- **30–60 days** time to first verified credit
+- **CSRD Scope 3** requirements active now for large corporate supply chains
+- **UK ETS expansion** — carbon price trajectory £40–£100/tonne through 2030
+
+---
+
+## Repository Structure
+
+```
+CarbonSync/
+├── README.md              # This file
+├── ARCHITECTURE.md        # Full system architecture
+├── METHODOLOGY.md         # Emissions calculation and verification methodology
+├── SECURITY.md            # Cryptographic schema and security model
+└── carbonsync-demo.html   # Live interactive demo
+```
 
 ---
 
 ## Live Demo
 
-**[Launch CarbonSync™ Dashboard →](https://daxemlabs.github.io/CarbonSync/carbonsync-demo.html)**
-
-### Pre-Configured Client Links
-
-| Client | Direct Link |
-|--------|------------|
-| Pickfords (700 vehicles) | [Open Pickfords Dashboard](https://daxemlabs.github.io/CarbonSync/carbonsync-demo.html?company=Pickfords&fleet=700&sector=removals&autolaunch=true) |
-| O'Donovan Waste (85 vehicles) | [Open O'Donovan Dashboard](https://daxemlabs.github.io/CarbonSync/carbonsync-demo.html?company=O%27Donovan+Waste&fleet=85&sector=waste&autolaunch=true) |
-| Generic (any fleet) | [Open with Login Screen](https://daxemlabs.github.io/CarbonSync/carbonsync-demo.html) |
+[**→ View Live Demo**](https://daxemlabs.github.io/CarbonSync/carbonsync-demo.html)
 
 ---
 
-## What Is This?
+## Contact
 
-This is a fully interactive sandbox demonstration of the CarbonSync™ platform — built for fleet operators, investors, and pilot partners to experience the product before a Sentinel Rig is installed.
-
-It runs on simulated data that mirrors exactly what the live platform produces when a real rig is connected. Every number, calculation, and credit figure uses real methodology — DEFRA 2024 emission factors, Verra VCS standards, and live ACX market pricing.
-
-**When a real Sentinel Rig connects, nothing in the UI changes. The simulation data is simply replaced with live packets.**
-
----
-
-## Platform Overview
-
-| Tab | What It Shows |
-|-----|--------------|
-| **Overview** | Live credits, fuel savings, revenue, and the full verification pipeline from sensor to blockchain |
-| **Live Telemetry** | Per-vehicle data feed — fuel flow, CO₂, OBD-II signals, cryptographic signatures |
-| **Carbon Credits** | Credit breakdown by source category, Verra VCS methodology, CBAM alignment |
-| **Blockchain Ledger** | Real-time ERC-1155 minting events on Polygon — transaction hashes, block numbers |
-| **Revenue** | 3-year financial projection, 70/15/10/5 revenue split |
-| **⚠ CBAM Exposure** | UK Carbon Border Adjustment Mechanism liability calculator — live from January 2027 |
+| Enquiry | Address |
+|---------|---------|
+| Investor inquiries | investors@daxem.ai |
+| Fleet partnerships & pilots | partnerships@daxem.ai |
+| Technical & engineering | engineering@daxem.ai |
 
 ---
 
-## How It Works
-
-```
-Sentinel Rig  →  MQTT / 4G  →  Dataloom™ AI  →  CarbonSync™ Ledger  →  Polygon Blockchain  →  Carbon Market
-   (HGV)          (signed)       (validated)        (cryptographic)          (ERC-1155)           (revenue)
-```
-
----
-
-## Repository Contents
-
-| File | Purpose |
-|------|---------|
-| `carbonsync-demo.html` | Full interactive platform — single file, no dependencies |
-| [`ARCHITECTURE.md`](ARCHITECTURE.md) | End-to-end system architecture — edge hardware through to blockchain settlement |
-| [`METHODOLOGY.md`](METHODOLOGY.md) | Scientific and regulatory methodology — DEFRA 2024, Verra VCS, ACX pricing |
-| [`HARDWARE_ROADMAP.md`](HARDWARE_ROADMAP.md) | Sentinel Rig phase-gate development roadmap — POC through to Mass Production |
-| [`SECURITY.md`](SECURITY.md) | Threat model, cryptographic guarantees, chain of custody, key management |
-| [`COMPETITIVE_LANDSCAPE.md`](COMPETITIVE_LANDSCAPE.md) | Competitor matrix and market positioning analysis |
-| [`PILOT_PROGRAM.md`](PILOT_PROGRAM.md) | Beta fleet pilot programme — objectives, partner criteria, timeline |
-| `CarbonSync_Rig_Brief.docx` | Technical specification for embedded and backend engineers |
-| `NOTICE` | IP and trademark notice |
-
----
-
-## Connecting a Real Sentinel Rig
-
-The platform is production-ready for live rig integration. Full technical specification in `CarbonSync_Rig_Brief.docx`.
-
-**WebSocket endpoint:**
-```
-wss://api.daxem.ai/rigs/live
-```
-
-**Developer Mode:** Press `Ctrl+D` inside the dashboard — WebSocket status, live connection log, packet schema, and computation constants. Simulation mode is on by default.
-
----
-
-## Financial Model
-
-| Parameter | Value | Source |
-|-----------|-------|--------|
-| CO₂ emission factor | 2.68 kg/litre | DEFRA 2024 |
-| Efficiency baseline | 18% improvement | Verified methodology |
-| Carbon credit price | £72/tCO₂e | ACX voluntary market |
-| Fleet revenue share | 70% | CarbonSync™ standard |
-| Platform fee | 15% | Daxem Labs |
-| Driver incentives | 10% | Fleet operator distributed |
-| Reserve fund | 5% | Buffer |
-| Hardware CAC | Available on request | Sentinel Rig inc. installation |
-
----
-
-## CBAM Compliance
-
-The **⚠ CBAM Exposure** tab calculates each fleet's liability under the UK Carbon Border Adjustment Mechanism, effective **1 January 2027**.
-
-- Without verified data: HMRC default penalty rates applied to all emissions
-- With CarbonSync™: Verified actual data = lowest possible CBAM charge + carbon credit income offsets liability
-- UK ETS rate: £40–£100/tonne (adjustable in the calculator)
-
----
-
-## Technology
-
-| Layer | Technology |
-|-------|-----------|
-| Hardware | Sentinel Rig — ESP32 primary MCU + ATECC608A secure element, fuel flow sensor, OBD-II, GPS, 4G (Quectel BG96) |
-| Cryptography | ATECC608A hardware-accelerated SHA-256, protected key storage, FIPS-compliant TRNG |
-| Data capture | MQTT over TLS, SHA-256 signed at source, SD card local backup |
-| AI validation | Dataloom™ — LSTM per-vehicle anomaly detection, efficiency scoring |
-| Blockchain | Polygon Mainnet — ERC-1155 tokens, gas-efficient minting |
-| Verification | Verra VCS methodology, DEFRA 2024 emission factors |
-| Frontend | Vanilla JS, no dependencies, WebSocket live data layer |
-
-### Hardware Security Architecture
-
-The Sentinel Rig uses a dual-processor architecture for hardware-enforced cryptographic integrity — the core of what makes CarbonSync™ data Verra-auditable and tamper-evident.
-
-**Primary MCU: ESP32-WROOM-32**
-- 32-bit dual-core processor, 240 MHz, WiFi/Bluetooth
-- Manages sensor interfacing, data aggregation, OBD-II telemetry, and cloud transmission
-- Coordinates all data flows with the ATECC608A secure element
-
-**Cryptographic Secure Element: ATECC608A (Microchip CryptoAuthentication)**
-- Hardware-accelerated SHA-256 — hash computation occurs in dedicated silicon, never exposed to software
-- Protected key storage — private keys are provisioned at manufacture and physically cannot be extracted by any software attack
-- True hardware random number generator (TRNG) with FIPS 140-2 compliant entropy
-- Tamper detection pins with active internal shield layer
-- Communicates with the ESP32 via unidirectional I2C interface — receives sensor data, returns signed hashes, accepts no command inputs
-
-**Why this matters:** A compromised ESP32 cannot generate false sensor data and a matching cryptographic hash simultaneously. Hash computation and key signing occur on the independent ATECC608A, whose private keys are physically unextractable. This hardware-enforced separation is what creates Verra-credible chain of custody from the physical measurement event to the issued carbon credit.
-
-> *Patent Pending GB2602946.2 — ATECC608A secure element preferred embodiment. US Provisional filed simultaneously. 12-month PCT window active. See [METHODOLOGY.md](METHODOLOGY.md) for full cryptographic chain of custody specification and [SECURITY.md](SECURITY.md) for threat model and key management.*
-
----
-
-## About Daxem Labs
-
-Daxem Labs is a UK-based climate technology company building the infrastructure for hardware-anchored carbon credit verification.
-
-- **Stage:** Pre-pilot · Q2 2026 launch
-- **Pilot partner:** Strategic validation partner (to be announced)
-- **Target market:** UK HGV fleet operators — waste, logistics, construction, removals
-- **Patent:** GB2602946.2 (filed February 2026)
-- **Contact:** [daxem.ai](https://daxem.ai) · [investors@daxem.ai](mailto:investors@daxem.ai) · [partnerships@daxem.ai](mailto:partnerships@daxem.ai)
-
----
-
-*CarbonSync™ is a trademark of Daxem Labs. All rights reserved.*
+*CarbonSync™ is a trademark of Daxem Labs Ltd · Co. No. 16614429 · London, UK*  
+*Patent Application Filed February 2026 · All rights reserved*  
+*[daxem.ai](https://daxem.ai)*
