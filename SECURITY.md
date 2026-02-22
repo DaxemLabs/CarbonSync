@@ -1,5 +1,5 @@
 # CarbonSync™ Security Overview
-**Daxem Labs · CarbonSync™ · Patent Pending GB2602946.2**
+**Daxem Labs Ltd · Co. No. 16614429 · Patent Application Filed February 2026**
 
 **Document Version:** 1.1 (February 2026)
 **Classification:** Public — Security Reference
