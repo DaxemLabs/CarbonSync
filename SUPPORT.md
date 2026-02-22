@@ -1,4 +1,4 @@
-# Getting Support for CarbonSync
+# Getting Support for CarbonSync™
 
 Thank you for your interest in CarbonSync™. Here's how to reach the right person.
 
