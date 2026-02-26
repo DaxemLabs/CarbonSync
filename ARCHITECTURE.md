@@ -254,7 +254,7 @@ Smart contracts distribute revenue automatically on token sale:
 wss://api.daxem.ai/rigs/live
 ```
 
-Delivers live signed packets from connected Sentinel Rigs. Press `Ctrl+D` inside the [live dashboard](https://daxemlabs.github.io/CarbonProof/CarbonProof-demo.html) to inspect the packet schema and connection log in developer mode.
+Delivers live signed packets from connected Sentinel Rigs. Press `Ctrl+D` inside the [live dashboard](https://daxemlabs.github.io/CarbonProof) to inspect the packet schema and connection log in developer mode.
 
 ### Key Endpoints
 
