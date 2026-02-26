@@ -109,7 +109,7 @@ CarbonProof/
 
 ## Live Demo
 
-[**→ View Live Demo**](https://daxemlabs.github.io/CarbonProof/CarbonProof-demo.html)
+[**→ View Live Demo**](https://daxemlabs.github.io/CarbonProof)
 
 ---
 
