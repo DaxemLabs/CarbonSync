@@ -1,13 +1,13 @@
 # Sentinel Rig — Hardware Development Roadmap
 **Daxem Labs Ltd · Co. No. 16614429 · Patent Application Filed February 2026**
 
-> From proof of concept to mass production — the engineering pathway for the Sentinel Rig, CarbonSync's hardware foundation.
+> From proof of concept to mass production — the engineering pathway for the Sentinel Rig, CarbonProof's hardware foundation.
 
 ---
 
 ## Overview
 
-The Sentinel Rig is an edge-computing device installed on each HGV. It directly measures fuel consumption, reads engine telemetry via OBD-II, cryptographically signs all data at source using a dedicated ATECC608A secure element, and transmits signed packets via MQTT over 4G every 30 seconds. It is the only component in the CarbonSync stack that cannot be replicated in software — and the only reason CarbonSync's carbon credits are auditable at Verra standards.
+The Sentinel Rig is an edge-computing device installed on each HGV. It directly measures fuel consumption, reads engine telemetry via OBD-II, cryptographically signs all data at source using a dedicated ATECC608A secure element, and transmits signed packets via MQTT over 4G every 30 seconds. It is the only component in the CarbonProof stack that cannot be replicated in software — and the only reason CarbonProof's carbon credits are auditable at Verra standards.
 
 This roadmap follows the industry-standard hardware development framework: **POC → EVT → DVT → PVT → MP**.
 
@@ -194,7 +194,7 @@ The ATECC608A is the preferred embodiment of the independent cryptographic co-pr
 
 ## Why the CBAM Deadline Changes Everything
 
-The UK Carbon Border Adjustment Mechanism goes live **1 January 2027**. Every unverified tonne of HGV emissions becomes a financial liability from that date. CarbonSync's PVT completes in February 2027 — meaning pilot fleet operators are covered by DVT beta units from October 2026, and volume deployment begins in March 2027, within the first CBAM quarter.
+The UK Carbon Border Adjustment Mechanism goes live **1 January 2027**. Every unverified tonne of HGV emissions becomes a financial liability from that date. CarbonProof's PVT completes in February 2027 — meaning pilot fleet operators are covered by DVT beta units from October 2026, and volume deployment begins in March 2027, within the first CBAM quarter.
 
 This is not a nice-to-have timeline. It is a market-entry window with a hard close.
 
@@ -209,4 +209,4 @@ This is not a nice-to-have timeline. It is a market-entry window with a hard clo
 
 ---
 
-*CarbonSync™ is a trademark of Daxem Labs. Patent Pending GB2602946.2. All rights reserved.*
+*CarbonProof™ is a trademark of Daxem Labs. Patent Pending GB2602946.2. All rights reserved.*

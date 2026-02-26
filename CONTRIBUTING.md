@@ -1,6 +1,6 @@
-# Contributing to CarbonSync
+# Contributing to CarbonProof
 
-Thank you for your interest in CarbonSync™. We welcome feedback from fleet operators, investors, engineers, and verification body partners.
+Thank you for your interest in CarbonProof™. We welcome feedback from fleet operators, investors, engineers, and verification body partners.
 
 ---
 
@@ -8,17 +8,17 @@ Thank you for your interest in CarbonSync™. We welcome feedback from fleet ope
 
 If you encounter an issue with the demo platform or have a suggestion:
 
-1. Check the [existing issues](https://github.com/DaxemLabs/CarbonSync/issues) to see if it has already been reported
-2. If not, open a [new issue](https://github.com/DaxemLabs/CarbonSync/issues/new) with a clear title and as much detail as possible
+1. Check the [existing issues](https://github.com/DaxemLabs/CarbonProof/issues) to see if it has already been reported
+2. If not, open a [new issue](https://github.com/DaxemLabs/CarbonProof/issues/new) with a clear title and as much detail as possible
 3. For demo-specific bugs, include the URL you were using, your browser, and what you expected vs. what happened
 
 ---
 
 ## For Embedded & Backend Engineers
 
-If you are integrating a Sentinel Rig or building on the CarbonSync data pipeline:
+If you are integrating a Sentinel Rig or building on the CarbonProof data pipeline:
 
-- Full technical specification is in `CarbonSync_Rig_Brief.docx`
+- Full technical specification is in `CarbonProof_Rig_Brief.docx`
 - End-to-end system architecture and API reference in [`ARCHITECTURE.md`](ARCHITECTURE.md)
 - ATECC608A secure element integration detail is in [`HARDWARE_ROADMAP.md`](HARDWARE_ROADMAP.md) — Phase 1 POC section
 - Threat model and key management in [`SECURITY.md`](SECURITY.md)
@@ -48,7 +48,7 @@ Contact: [methodology@daxem.ai](mailto:methodology@daxem.ai)
 
 ## Code Contributions
 
-CarbonSync is currently in a pre-pilot phase. We are not accepting external code contributions at this time. This will change as the platform matures — watch this repository for updates.
+CarbonProof is currently in a pre-pilot phase. We are not accepting external code contributions at this time. This will change as the platform matures — watch this repository for updates.
 
 ---
 
@@ -58,4 +58,4 @@ We are committed to constructive, respectful engagement across all interactions.
 
 ---
 
-*CarbonSync™ is a trademark of Daxem Labs. Patent Pending GB2602946.2.*
+*CarbonProof™ is a trademark of Daxem Labs. Patent Pending GB2602946.2.*

@@ -1,7 +1,7 @@
 # Competitive Landscape — Carbon Credit Tokenization & MRV
 **Daxem Labs Ltd · Co. No. 16614429 · Patent Application Filed February 2026**
 
-> CarbonSync operates in the intersection of hardware IoT, digital MRV, and carbon tokenization. Most competitors occupy only one of these layers. CarbonSync occupies all three — and owns the layer that matters most: the data at source.
+> CarbonProof operates in the intersection of hardware IoT, digital MRV, and carbon tokenization. Most competitors occupy only one of these layers. CarbonProof occupies all three — and owns the layer that matters most: the data at source.
 
 ---
 
@@ -13,9 +13,9 @@ The voluntary carbon market has two fundamentally different problems:
 Toucan, KlimaDAO, Flowcarbon, and JPMorgan Kinexys all solve this problem.
 
 **Problem 2 — Data Integrity Layer:** How do you prove the emissions reduction actually happened, and that the data hasn't been manipulated between the physical event and the credit?
-Nobody solves this for mobile industrial assets. CarbonSync does.
+Nobody solves this for mobile industrial assets. CarbonProof does.
 
-Tokenizing a carbon credit that was verified through manual fuel receipts and quarterly audits does not solve the trust problem — it just puts an untrustworthy number on a blockchain. CarbonSync creates the trust at the point of measurement, making every token downstream cryptographically traceable to a physical sensor reading signed by a hardware-protected key.
+Tokenizing a carbon credit that was verified through manual fuel receipts and quarterly audits does not solve the trust problem — it just puts an untrustworthy number on a blockchain. CarbonProof creates the trust at the point of measurement, making every token downstream cryptographically traceable to a physical sensor reading signed by a hardware-protected key.
 
 ---
 
@@ -23,7 +23,7 @@ Tokenizing a carbon credit that was verified through manual fuel receipts and qu
 
 | Company | Approach | Blockchain | Hardware? | MRV Method | Market | Key Differentiator |
 |---|---|---|---|---|---|---|
-| **CarbonSync (Daxem Labs)** | Hardware-anchored trust — full lifecycle from measurement to tokenization | Polygon (ERC-1155) | ✅ Sentinel Rig — ESP32 + ATECC608A secure element, unidirectional interface | Direct fuel flow measurement + LSTM AI + Verra VCS | UK HGV fleets — logistics, waste, construction | Hardware-rooted chain of custody. ATECC608A keys physically unextractable. |
+| **CarbonProof (Daxem Labs)** | Hardware-anchored trust — full lifecycle from measurement to tokenization | Polygon (ERC-1155) | ✅ Sentinel Rig — ESP32 + ATECC608A secure element, unidirectional interface | Direct fuel flow measurement + LSTM AI + Verra VCS | UK HGV fleets — logistics, waste, construction | Hardware-rooted chain of custody. ATECC608A keys physically unextractable. |
 | Toucan Protocol | Bridges existing registry credits to blockchain | Polygon, Base | ❌ None | Relies on Verra / Gold Standard | Carbon credit traders, DeFi | First-mover; large liquidity pool |
 | KlimaDAO | Carbon-backed algorithmic currency | Polygon | ❌ None | Relies on bridged credits via Toucan | DeFi investors | Deflationary token mechanism; governance model |
 | Flowcarbon | Tokenizes high-integrity credits | XRP Ledger | ❌ None | Verra-registered projects | Institutional ESG investors | Institutional focus; high-profile founding team |
@@ -32,13 +32,13 @@ Tokenizing a carbon credit that was verified through manual fuel receipts and qu
 | Powerledger | Renewable energy certificates (RECs) | Custom energy ledger | ✅ IoT metering | Energy production tracking | Renewable energy projects | Peer-to-peer energy trading |
 | IBM Environmental Markets | Enterprise carbon management | Private / consortium | ❌ None | Software platform | Large corporations | Enterprise sales channels |
 | JPMorgan Kinexys | Institutional carbon trading | Private / permissioned | ❌ None | Partnership-based | Institutional investors | Banking infrastructure; liquidity |
-| Verra | Registry standard-setter | N/A | ❌ None | Gold standard methodologies | All project types | The incumbent registry — CarbonSync seeks methodology approval here |
+| Verra | Registry standard-setter | N/A | ❌ None | Gold standard methodologies | All project types | The incumbent registry — CarbonProof seeks methodology approval here |
 | Pachama / Nori / Silvi | dMRV platforms | Various | ❌ None | Remote sensing — forestry / agriculture | Nature-based projects | Stationary target monitoring — incompatible with mobile assets |
 | Persefoni / Salesforce Net Zero | Software emissions tracking | N/A | ❌ None | Spend-based estimation | Corporate ESG reporting | Enterprise software integration |
 
 ---
 
-## CarbonSync's Competitive Advantages
+## CarbonProof's Competitive Advantages
 
 | Advantage | Detail | Source |
 |---|---|---|
@@ -75,7 +75,7 @@ Platforms like Pachama, Nori, and Silvi are designed for stationary targets — 
                                │
           Niche Specialists    │    Full-Stack Platforms
                                │
-    Powerledger ──────────────►│◄────── CarbonSync ★
+    Powerledger ──────────────►│◄────── CarbonProof ★
     (energy)                   │         (HGV focus)
                                │
 ◄──────────────────────────────┼──────────────────────────►
@@ -93,7 +93,7 @@ HORIZONTAL                     │                    VERTICAL
                         SOFTWARE-ONLY
 ```
 
-CarbonSync sits in the Full-Stack / Vertical quadrant — the only player combining hardware integration with deep sector focus. This is the most defensible position: the ATECC608A secure element creates the hardware moat, sector focus creates the expertise, and the CBAM deadline creates the urgency.
+CarbonProof sits in the Full-Stack / Vertical quadrant — the only player combining hardware integration with deep sector focus. This is the most defensible position: the ATECC608A secure element creates the hardware moat, sector focus creates the expertise, and the CBAM deadline creates the urgency.
 
 ---
 
@@ -101,13 +101,13 @@ CarbonSync sits in the Full-Stack / Vertical quadrant — the only player combin
 
 The carbon credit tokenization market is projected to reach **$8.4 billion by 2033** (13.5% CAGR). However, the majority of that market is financial layer infrastructure — platforms that tokenize credits that already exist through traditional, manual verification processes.
 
-CarbonSync is not a financial layer solution. It is a **data integrity solution that creates the credits** through verified, hardware-anchored measurement. This distinction matters for three reasons:
+CarbonProof is not a financial layer solution. It is a **data integrity solution that creates the credits** through verified, hardware-anchored measurement. This distinction matters for three reasons:
 
 **1. The trust problem is unsolved.** Manual MRV — fuel receipts, quarterly audits, human data entry — creates a 6–12 month lag between emissions reduction and credit issuance, costs $3–5 per tonne in verification fees, and provides no cryptographic evidence linking reported data to physical measurements. Every financial layer solution downstream inherits this trust deficit.
 
 **2. CBAM makes verification mandatory, not optional.** From 1 January 2027, UK fleet operators face direct financial liability for unverified emissions. This converts a voluntary market into a compliance market — the most durable and scalable type of demand.
 
-**3. The hardware moat is real.** Software can be copied in weeks. A certified, automotive-grade hardware platform with a patented cryptographic architecture (ATECC608A secure element, unidirectional interface, hardware kill-switch), regulatory approvals, and an installed fleet base cannot. CarbonSync's competitive advantage compounds with every rig deployed.
+**3. The hardware moat is real.** Software can be copied in weeks. A certified, automotive-grade hardware platform with a patented cryptographic architecture (ATECC608A secure element, unidirectional interface, hardware kill-switch), regulatory approvals, and an installed fleet base cannot. CarbonProof's competitive advantage compounds with every rig deployed.
 
 ---
 
@@ -120,4 +120,4 @@ CarbonSync is not a financial layer solution. It is a **data integrity solution 
 
 ---
 
-*CarbonSync™ is a trademark of Daxem Labs. Patent Pending GB2602946.2. All rights reserved.*
+*CarbonProof™ is a trademark of Daxem Labs. Patent Pending GB2602946.2. All rights reserved.*

@@ -1,4 +1,4 @@
-# CarbonSync™ — Emissions Measurement & Verification Methodology
+# CarbonProof™ — Emissions Measurement & Verification Methodology
 
 *Daxem Labs Ltd · Co. No. 16614429 · Patent Application Filed February 2026*
 
@@ -6,7 +6,7 @@
 
 ## Overview
 
-CarbonSync measures, verifies, and tokenises emissions reductions from UK HGV fleets using a hardware-anchored digital MRV (dMRV) approach. The methodology is designed for alignment with Verra VCS standards and is in active engagement with Verra and SustainCERT.
+CarbonProof measures, verifies, and tokenises emissions reductions from UK HGV fleets using a hardware-anchored digital MRV (dMRV) approach. The methodology is designed for alignment with Verra VCS standards and is in active engagement with Verra and SustainCERT.
 
 The core principle: every emissions data point is cryptographically signed at the point of physical measurement by dedicated hardware whose state software cannot observe or influence. No manual data entry. No human trust assumptions. Every carbon credit is traceable to a physical measurement event.
 
@@ -15,18 +15,18 @@ The core principle: every emissions data point is cryptographically signed at th
 ## Regulatory & Standards Framework
 
 ### Verra VCS — Methodology in Engagement
-CarbonSync is designed for alignment with the Verified Carbon Standard (VCS). The platform architecture is built to produce the tamper-evident, auditable measurement data that VCS methodology approval requires. Active engagement with Verra and SustainCERT is ongoing.
+CarbonProof is designed for alignment with the Verified Carbon Standard (VCS). The platform architecture is built to produce the tamper-evident, auditable measurement data that VCS methodology approval requires. Active engagement with Verra and SustainCERT is ongoing.
 
-> **Note:** CarbonSync is in methodology engagement with Verra. VCS methodology approval is in progress and has not yet been formally granted.
+> **Note:** CarbonProof is in methodology engagement with Verra. VCS methodology approval is in progress and has not yet been formally granted.
 
 ### DEFRA 2024 Emission Factors
 Fuel consumption and emissions calculations use DEFRA's 2024 greenhouse gas conversion factors for company reporting. These are the UK government's official methodology for fleet emissions quantification and are updated annually.
 
 ### UK Emissions Trading Scheme (UK ETS)
-UK HGV operators are subject to the UK ETS. CarbonSync creates the verified baseline data that minimises operator ETS liability by providing auditable, methodology-referenced measurement rather than estimated default values. As the UK carbon price rises toward £40–£100 per tonne through 2030, the difference between verified and unverified baseline data becomes material.
+UK HGV operators are subject to the UK ETS. CarbonProof creates the verified baseline data that minimises operator ETS liability by providing auditable, methodology-referenced measurement rather than estimated default values. As the UK carbon price rises toward £40–£100 per tonne through 2030, the difference between verified and unverified baseline data becomes material.
 
 ### CSRD Scope 3
-The EU Corporate Sustainability Reporting Directive requires large companies — and their supply chains — to report Scope 3 emissions in a traceable, auditable, methodology-referenced format. Transport is a primary Scope 3 category. CarbonSync provides fleet operators with the verified emissions data their corporate customers now require for CSRD compliance.
+The EU Corporate Sustainability Reporting Directive requires large companies — and their supply chains — to report Scope 3 emissions in a traceable, auditable, methodology-referenced format. Transport is a primary Scope 3 category. CarbonProof provides fleet operators with the verified emissions data their corporate customers now require for CSRD compliance.
 
 ---
 
@@ -169,10 +169,10 @@ The complete chain from physical sensor pulse to minted token is reconstructable
 
 → [ARCHITECTURE.md](./ARCHITECTURE.md) — Full hardware and software system design  
 → [SECURITY.md](./SECURITY.md) — Cryptographic schema and security model  
-→ [Live Demo](https://daxemlabs.github.io/CarbonSync/carbonsync-demo.html) — Interactive platform demonstration
+→ [Live Demo](https://daxemlabs.github.io/CarbonProof/CarbonProof-demo.html) — Interactive platform demonstration
 
 ---
 
-*CarbonSync™ is a trademark of Daxem Labs Ltd · Co. No. 16614429 · London, UK*  
+*CarbonProof™ is a trademark of Daxem Labs Ltd · Co. No. 16614429 · London, UK*  
 *Patent Application Filed February 2026 · All rights reserved*  
 *[daxem.ai](https://daxem.ai)*

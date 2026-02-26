@@ -1,4 +1,4 @@
-# CarbonSync™ — Hardware-Anchored Carbon Credits
+# CarbonProof™ — Hardware-Anchored Carbon Credits
 
 **The first hardware-anchored dMRV platform for UK HGV fleets.**
 
@@ -18,11 +18,11 @@ Fleet operators cannot currently provide their customers with verified, auditabl
 
 **UK ETS — the fleet operator's financial exposure**
 
-UK HGV operators are subject to the UK Emissions Trading Scheme. As the scheme expands and the carbon price rises — projected at £40–£100 per tonne through 2030 — fleets with no verified baseline face maximum ETS cost. CarbonSync creates the verified baseline that minimises ETS liability, while simultaneously generating carbon credit revenue from measured reductions.
+UK HGV operators are subject to the UK Emissions Trading Scheme. As the scheme expands and the carbon price rises — projected at £40–£100 per tonne through 2030 — fleets with no verified baseline face maximum ETS cost. CarbonProof creates the verified baseline that minimises ETS liability, while simultaneously generating carbon credit revenue from measured reductions.
 
 **CBAM — indirect supply chain pressure**
 
-Importers of steel, aluminium, cement, and other CBAM goods must account for supply chain emissions including transport in their CBAM and CSRD returns. Those importers are asking their logistics partners for verified transport emissions data. A CarbonSync-certified carrier can answer yes. An uncertified carrier cannot. This creates a procurement premium for CarbonSync-certified fleets.
+Importers of steel, aluminium, cement, and other CBAM goods must account for supply chain emissions including transport in their CBAM and CSRD returns. Those importers are asking their logistics partners for verified transport emissions data. A CarbonProof-certified carrier can answer yes. An uncertified carrier cannot. This creates a procurement premium for CarbonProof-certified fleets.
 
 ---
 
@@ -69,7 +69,7 @@ Software can be replicated in weeks. A certified automotive-grade secure element
 | **DEFRA 2024** | Aligned | Fuel consumption and emissions calculation methodology |
 | **UK ETS** | Active | Verified baseline data minimises operator ETS liability |
 | **CSRD Scope 3** | Active | Provides the auditable transport emissions data corporate customers require |
-| **CBAM** | Indirect | Creates procurement demand from importers for CarbonSync-certified carriers |
+| **CBAM** | Indirect | Creates procurement demand from importers for CarbonProof-certified carriers |
 
 ---
 
@@ -97,19 +97,19 @@ Software can be replicated in weeks. A certified automotive-grade secure element
 ## Repository Structure
 
 ```
-CarbonSync/
+CarbonProof/
 ├── README.md              # This file
 ├── ARCHITECTURE.md        # Full system architecture
 ├── METHODOLOGY.md         # Emissions calculation and verification methodology
 ├── SECURITY.md            # Cryptographic schema and security model
-└── carbonsync-demo.html   # Live interactive demo
+└── CarbonProof-demo.html   # Live interactive demo
 ```
 
 ---
 
 ## Live Demo
 
-[**→ View Live Demo**](https://daxemlabs.github.io/CarbonSync/carbonsync-demo.html)
+[**→ View Live Demo**](https://daxemlabs.github.io/CarbonProof/CarbonProof-demo.html)
 
 ---
 
@@ -123,6 +123,6 @@ CarbonSync/
 
 ---
 
-*CarbonSync™ is a trademark of Daxem Labs Ltd · Co. No. 16614429 · London, UK*  
+*CarbonProof™ is a trademark of Daxem Labs Ltd · Co. No. 16614429 · London, UK*  
 *Patent Application Filed February 2026 · All rights reserved*  
 *[daxem.ai](https://daxem.ai)*

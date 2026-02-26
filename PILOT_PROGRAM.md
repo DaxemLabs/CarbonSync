@@ -1,13 +1,13 @@
 # Pilot Program — Sentinel Rig Beta Fleet
 **Daxem Labs Ltd · Co. No. 16614429 · Patent Application Filed February 2026**
 
-> CarbonSync is now accepting applications for its inaugural beta fleet pilot — a structured 6-month programme designed to validate hardware performance, carbon credit methodology, and commercial viability at scale.
+> CarbonProof is now accepting applications for its inaugural beta fleet pilot — a structured 6-month programme designed to validate hardware performance, carbon credit methodology, and commercial viability at scale.
 
 ---
 
 ## What the Pilot Is
 
-The CarbonSync pilot is a hardware and software deployment across a select group of UK HGV fleets. Sentinel Rigs are installed on participating vehicles and begin capturing verified fuel consumption and emissions data in real time.
+The CarbonProof pilot is a hardware and software deployment across a select group of UK HGV fleets. Sentinel Rigs are installed on participating vehicles and begin capturing verified fuel consumption and emissions data in real time.
 
 The pilot serves three purposes simultaneously:
 
@@ -81,7 +81,7 @@ The pilot programme has limited capacity for the initial beta cohort. If you ope
 
 **Contact:** [partnerships@daxem.ai](mailto:partnerships@daxem.ai) · [daxem.ai](https://daxem.ai)
 
-**Live platform demo:** [CarbonSync™ Sandbox](https://daxemlabs.github.io/CarbonSync/carbonsync-demo.html) — enter your fleet size to see projected credit revenue and CBAM liability figures for your specific operation.
+**Live platform demo:** [CarbonProof™ Sandbox](https://daxemlabs.github.io/CarbonProof/CarbonProof-demo.html) — enter your fleet size to see projected credit revenue and CBAM liability figures for your specific operation.
 
 ---
 
@@ -94,4 +94,4 @@ The pilot programme has limited capacity for the initial beta cohort. If you ope
 
 ---
 
-*CarbonSync™ is a trademark of Daxem Labs. Patent Pending GB2602946.2. All rights reserved.*
+*CarbonProof™ is a trademark of Daxem Labs. Patent Pending GB2602946.2. All rights reserved.*

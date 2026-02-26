@@ -1,6 +1,6 @@
-# Getting Support for CarbonSync™
+# Getting Support for CarbonProof™
 
-Thank you for your interest in CarbonSync™. Here's how to reach the right person.
+Thank you for your interest in CarbonProof™. Here's how to reach the right person.
 
 ---
 
@@ -44,7 +44,7 @@ For technical integration support — Sentinel Rig installation, WebSocket conne
 📧 **[engineering@daxem.ai](mailto:engineering@daxem.ai)**
 
 Resources available:
-- `CarbonSync_Rig_Brief.docx` — full technical specification
+- `CarbonProof_Rig_Brief.docx` — full technical specification
 - [`ARCHITECTURE.md`](ARCHITECTURE.md) — end-to-end system architecture, API reference, packet schema
 - [`HARDWARE_ROADMAP.md`](HARDWARE_ROADMAP.md) — ATECC608A secure element detail and phase-gate milestones
 - [`SECURITY.md`](SECURITY.md) — threat model, cryptographic guarantees, key management
@@ -65,10 +65,10 @@ For anything not covered above:
 
 ## Live Platform
 
-The CarbonSync™ platform is available to explore right now — no login required for the demo:
+The CarbonProof™ platform is available to explore right now — no login required for the demo:
 
-**[Launch CarbonSync™ Dashboard →](https://daxemlabs.github.io/CarbonSync/carbonsync-demo.html)**
+**[Launch CarbonProof™ Dashboard →](https://daxemlabs.github.io/CarbonProof/CarbonProof-demo.html)**
 
 ---
 
-*CarbonSync™ is a trademark of Daxem Labs. Patent Pending GB2602946.2.*
+*CarbonProof™ is a trademark of Daxem Labs. Patent Pending GB2602946.2.*

@@ -1,4 +1,4 @@
-# CarbonSync™ System Architecture
+# CarbonProof™ System Architecture
 **Daxem Labs Ltd · Co. No. 16614429 · Patent Application Filed February 2026**
 
 **Document Version:** 1.0 (February 2026)
@@ -10,7 +10,7 @@
 
 ## Overview
 
-CarbonSync is a distributed system for cryptographically-secured measurement, validation, and tokenisation of industrial emissions reductions. The architecture is divided into four layers: Edge (hardware), Validation (AI and data integrity), Ledger (chain of custody and verification), and Settlement (blockchain and carbon market).
+CarbonProof is a distributed system for cryptographically-secured measurement, validation, and tokenisation of industrial emissions reductions. The architecture is divided into four layers: Edge (hardware), Validation (AI and data integrity), Ledger (chain of custody and verification), and Settlement (blockchain and carbon market).
 
 The defining architectural property is that **trust is established at the point of physical measurement** — not at the cloud layer, not at the registry, and not by policy. Every carbon credit is cryptographically traceable to a physical sensor reading signed by hardware whose keys are physically unextractable.
 
@@ -21,7 +21,7 @@ The defining architectural property is that **trust is established at the point 
 ## High-Level Data Flow
 
 ```
-Sentinel Rig          Dataloom™              CarbonSync™           Settlement
+Sentinel Rig          Dataloom™              CarbonProof™           Settlement
 (Vehicle Edge)        (Validation)           (Ledger + Pipeline)
 
 ┌─────────────┐       ┌─────────────┐        ┌─────────────┐       ┌──────────────┐
@@ -148,7 +148,7 @@ The LSTM generates the baseline against which project-period fuel consumption is
 
 ---
 
-## Layer 3 — Ledger: CarbonSync™ Verification Pipeline
+## Layer 3 — Ledger: CarbonProof™ Verification Pipeline
 
 ### 3.1 Monitoring Period Close
 
@@ -173,7 +173,7 @@ Authorization: Bearer {vvb_api_key}
 Content-Type: application/json
 
 {
-  "projectId": "CARBONSYNC-001",
+  "projectId": "CarbonProof-001",
   "monitoringPeriod": "2026-Q2",
   "packageIpfsHash": "QmXf3...",
   "rigIds": ["SENT-001", "SENT-002", ...],
@@ -186,7 +186,7 @@ The VVB computationally verifies the hash chain (seconds) rather than conducting
 
 ### 3.3 Cost and Time Comparison
 
-| Metric | Manual MRV | CarbonSync™ Automated |
+| Metric | Manual MRV | CarbonProof™ Automated |
 | :--- | :--- | :--- |
 | Verification cost | $3–5 per tonne | $0.50–0.75 per tonne |
 | Time to credit | 6–12 months | 30–60 days |
@@ -211,9 +211,9 @@ Each token's metadata contains:
 
 ```json
 {
-  "name": "CarbonSync VCU",
+  "name": "CarbonProof VCU",
   "description": "1 tonne CO₂e verified reduction — UK HGV fleet",
-  "projectId": "CARBONSYNC-001",
+  "projectId": "CarbonProof-001",
   "rigId": "SENT-001",
   "monitoringPeriod": "2026-Q2",
   "tCO2e": 1,
@@ -241,7 +241,7 @@ Smart contracts distribute revenue automatically on token sale:
 | Market | Type | Access Method |
 | :--- | :--- | :--- |
 | ACX (AirCarbon Exchange) | Voluntary carbon market | API integration — listed at prevailing spot price |
-| Corporate direct buyers | OTC / bilateral | Direct sale via CarbonSync™ marketplace |
+| Corporate direct buyers | OTC / bilateral | Direct sale via CarbonProof™ marketplace |
 | Verra registry | VCS | API submission for formal VCU issuance |
 
 ---
@@ -254,7 +254,7 @@ Smart contracts distribute revenue automatically on token sale:
 wss://api.daxem.ai/rigs/live
 ```
 
-Delivers live signed packets from connected Sentinel Rigs. Press `Ctrl+D` inside the [live dashboard](https://daxemlabs.github.io/CarbonSync/carbonsync-demo.html) to inspect the packet schema and connection log in developer mode.
+Delivers live signed packets from connected Sentinel Rigs. Press `Ctrl+D` inside the [live dashboard](https://daxemlabs.github.io/CarbonProof/CarbonProof-demo.html) to inspect the packet schema and connection log in developer mode.
 
 ### Key Endpoints
 
@@ -266,7 +266,7 @@ Delivers live signed packets from connected Sentinel Rigs. Press `Ctrl+D` inside
 | `/projects/{projectId}/credits` | GET | Issued credit history |
 | `/verification/submit` | POST | VVB verification package submission |
 
-Full integration specification: `CarbonSync_Rig_Brief.docx`
+Full integration specification: `CarbonProof_Rig_Brief.docx`
 
 ---
 
@@ -280,4 +280,4 @@ Full integration specification: `CarbonSync_Rig_Brief.docx`
 
 ---
 
-*CarbonSync™ is a trademark of Daxem Labs. Patent Pending GB2602946.2. All rights reserved.*
+*CarbonProof™ is a trademark of Daxem Labs. Patent Pending GB2602946.2. All rights reserved.*

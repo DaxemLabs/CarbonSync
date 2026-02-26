@@ -1,10 +1,10 @@
-# CarbonSync™ Security Overview
+# CarbonProof™ Security Overview
 **Daxem Labs Ltd · Co. No. 16614429 · Patent Application Filed February 2026**
 
 **Document Version:** 1.1 (February 2026)
 **Classification:** Public — Security Reference
 
-> This document describes the threat model, cryptographic guarantees, chain of custody architecture, and key management practices for the CarbonSync™ platform. It is intended for fleet operators, investors, Verra/SustainCERT reviewers, and integration partners.
+> This document describes the threat model, cryptographic guarantees, chain of custody architecture, and key management practices for the CarbonProof™ platform. It is intended for fleet operators, investors, Verra/SustainCERT reviewers, and integration partners.
 
 ---
 
@@ -123,7 +123,7 @@ Carbon credit — cryptographically traceable to physical measurement
 
 ## 5. Responsible Disclosure
 
-If you discover a security vulnerability in any CarbonSync™ component — hardware, firmware, platform, or this repository — please disclose it responsibly:
+If you discover a security vulnerability in any CarbonProof™ component — hardware, firmware, platform, or this repository — please disclose it responsibly:
 
 📧 **[security@daxem.ai](mailto:security@daxem.ai)**
 
@@ -142,4 +142,4 @@ We do not operate a bug bounty programme at this stage, but we recognise and cre
 
 ---
 
-*CarbonSync™ is a trademark of Daxem Labs. Patent Pending GB2602946.2. All rights reserved.*
+*CarbonProof™ is a trademark of Daxem Labs. Patent Pending GB2602946.2. All rights reserved.*
