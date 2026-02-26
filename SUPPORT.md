@@ -67,7 +67,7 @@ For anything not covered above:
 
 The CarbonProof™ platform is available to explore right now — no login required for the demo:
 
-**[Launch CarbonProof™ Dashboard →](https://daxemlabs.github.io/CarbonProof/CarbonProof-demo.html)**
+**[Launch CarbonProof™ Dashboard →](https://daxemlabs.github.io/CarbonProof)**
 
 ---
 
