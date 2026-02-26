@@ -117,9 +117,9 @@ CarbonProof/
 
 | Enquiry | Address |
 |---------|---------|
-| Investor inquiries | investors@daxem.ai |
-| Fleet partnerships & pilots | partnerships@daxem.ai |
-| Technical & engineering | engineering@daxem.ai |
+| Investor inquiries | invest@daxem.ai |
+| Fleet partnerships & pilots | fleet@daxem.ai |
+| Technical & engineering | hello@daxem.ai |
 
 ---
 
